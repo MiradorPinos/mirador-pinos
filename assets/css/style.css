@@ -694,19 +694,53 @@ p { margin: 0 0 1em; }
 }
 .field textarea { resize: vertical; min-height: 100px; }
 
-.rating-input { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 4px; }
+/* Rating input: 5 single stars in a row.
+ * DOM is [input5, label5, input4, label4, ...] so flex-direction:row-reverse
+ * places label1 on the left and label5 on the right, while the
+ * `input:checked ~ label` and `label:hover ~ label` selectors light up the
+ * hovered/checked star and every star to its left. */
+.rating-input {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 2px;
+}
+.rating-input input {
+  /* visually hidden but keyboard-accessible */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
 .rating-input label {
   cursor: pointer;
   color: var(--line);
-  font-size: 1.6rem;
-  letter-spacing: -2px;
-  transition: color .15s;
+  font-size: 2rem;
+  line-height: 1;
+  padding: 4px 2px;
+  user-select: none;
+  transition: color .15s, transform .1s;
 }
-.rating-input input { position: absolute; opacity: 0; pointer-events: none; }
+.rating-input label:hover { transform: scale(1.08); }
+
+/* Light up hovered star + all visually-leftward stars (= DOM-after siblings) */
 .rating-input label:hover,
 .rating-input label:hover ~ label,
-.rating-input input:checked ~ label { color: var(--gold); }
-.rating-input input:focus-visible + span { outline: 2px solid var(--forest); outline-offset: 2px; border-radius: 4px; }
+.rating-input input:checked ~ label {
+  color: var(--gold);
+}
+/* Focus ring on the label adjacent to the focused input */
+.rating-input input:focus-visible + label {
+  outline: 2px solid var(--forest);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
 
 .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
