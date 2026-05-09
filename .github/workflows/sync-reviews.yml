@@ -21,8 +21,11 @@ permissions:
   issues: read
 
 concurrency:
+  # Cancel any in-flight sync when a fresher event arrives. Each run
+  # rebuilds reviews.json from the current open-issues state, so the
+  # latest run is always sufficient — no need to keep stale ones running.
   group: sync-reviews
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   sync:
@@ -101,7 +104,31 @@ jobs:
             execSync('git config user.email "41898282+github-actions[bot]@users.noreply.github.com"');
             execSync(`git add ${path}`);
             execSync(`git commit -m "reviews: sync from issues (${reviews.length} review(s))"`);
-            execSync('git push');
+
+            // Retry push with rebase on non-fast-forward (handles the case where
+            // another concurrent run pushed between our checkout and our push).
+            let pushed = false;
+            for (let attempt = 1; attempt <= 4 && !pushed; attempt++) {
+              try {
+                execSync('git push origin HEAD:main');
+                pushed = true;
+              } catch (e) {
+                if (attempt === 4) {
+                  core.warning(`push failed after ${attempt} attempts; the next issue event will converge`);
+                  return;
+                }
+                core.info(`push attempt ${attempt} failed; rebasing and retrying`);
+                try {
+                  execSync('git fetch origin main');
+                  execSync('git rebase origin/main');
+                } catch (rebaseErr) {
+                  // Conflict (very unlikely since reviews.json is fully regenerated each run)
+                  try { execSync('git rebase --abort'); } catch {}
+                  core.warning('rebase conflict; leaving for next event to converge');
+                  return;
+                }
+              }
+            }
 
             // ── tiny YAML parser, just for our known shape ──────────────
             function parseYaml(src) {
