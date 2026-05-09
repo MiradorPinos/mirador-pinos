@@ -24,12 +24,24 @@ const RATE_LIMIT_PER_HOUR = 5;
 
 export default {
   async fetch(request, env, ctx) {
-    const allowedOrigin = env.ALLOWED_ORIGIN || '*';
+    // ALLOWED_ORIGIN can be a single origin or a comma-separated list,
+    // e.g. "https://miradorpinos.com,https://www.miradorpinos.com".
+    const allowedOrigins = (env.ALLOWED_ORIGIN || '')
+      .split(',').map(s => s.trim()).filter(Boolean);
+    const origin = request.headers.get('Origin') || '';
+    const originAllowed = !allowedOrigins.length || allowedOrigins.includes(origin);
+
+    // Reflect the actual origin in the CORS header when it's in the allow-list,
+    // otherwise fall back to the first allowed origin (or '*' if none configured).
+    const corsOrigin = originAllowed && origin
+      ? origin
+      : (allowedOrigins[0] || '*');
     const cors = {
-      'Access-Control-Allow-Origin': allowedOrigin,
+      'Access-Control-Allow-Origin': corsOrigin,
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
       'Access-Control-Max-Age': '86400',
+      'Vary': 'Origin',
     };
 
     if (request.method === 'OPTIONS') {
@@ -39,9 +51,8 @@ export default {
       return json({ error: 'method_not_allowed' }, 405, cors);
     }
 
-    // Origin check (defence in depth on top of CORS)
-    const origin = request.headers.get('Origin') || '';
-    if (env.ALLOWED_ORIGIN && origin && origin !== env.ALLOWED_ORIGIN) {
+    // Defence-in-depth on top of CORS: only accept POSTs from a configured origin
+    if (allowedOrigins.length && origin && !originAllowed) {
       return json({ error: 'origin_not_allowed' }, 403, cors);
     }
 

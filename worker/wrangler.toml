@@ -14,4 +14,5 @@ compatibility_date = "2026-05-01"
 # Set these as plain vars (they're not sensitive):
 [vars]
 GH_REPO        = "MiradorPinos/mirador-pinos"
-ALLOWED_ORIGIN = "https://miradorpinos.com"
+# Comma-separated list of allowed Origins for the form POSTs.
+ALLOWED_ORIGIN = "https://miradorpinos.com,https://www.miradorpinos.com"
