@@ -1,15 +1,6 @@
 {
   "reviews": [
     {
-      "id": "2026-05-09-prueba-i6",
-      "author": "Prueba",
-      "date": "2026-05-09",
-      "rating": 5,
-      "title": "Muy bien",
-      "body": "Excelente",
-      "source_issue": 6
-    },
-    {
       "id": "2026-04-12-carlos-contreras-i2",
       "author": "Carlos Contreras",
       "date": "2026-04-12",
