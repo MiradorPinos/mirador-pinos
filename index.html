@@ -384,6 +384,23 @@
   </div>
 </footer>
 
+<!-- ───── Review-detail modal (fullscreen preview) ───── -->
+<div class="rd" id="review-detail" hidden aria-hidden="true">
+  <div class="rd-backdrop" data-rd-close></div>
+  <article class="rd-panel" role="dialog" aria-modal="true" aria-labelledby="rd-title">
+    <button class="rd-close" data-rd-close aria-label="Cerrar" type="button">×</button>
+    <div class="rd-content">
+      <div class="rd-stars" id="rd-stars" aria-hidden="true"></div>
+      <h2 class="rd-title" id="rd-title"></h2>
+      <p class="rd-body" id="rd-body"></p>
+      <div class="rd-meta">
+        <span class="rd-author" id="rd-author"></span>
+        <span class="rd-date" id="rd-date"></span>
+      </div>
+    </div>
+  </article>
+</div>
+
 <!-- ───── WhatsApp floating widget ───── -->
 <div class="wa-widget" id="wa-widget">
   <div class="wa-panel" id="wa-panel" hidden role="dialog" aria-labelledby="wa-title">

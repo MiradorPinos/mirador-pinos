@@ -85,6 +85,7 @@
     "reviews.write": "Escribir una reseña",
     "reviews.empty": "Sé el primero en dejarnos una reseña.",
     "reviews.no_body": "(sin comentario adicional)",
+    "reviews.read_full": "Leer reseña completa",
 
     "form.title": "Comparte tu experiencia",
     "form.subtitle": "Tu reseña aparecerá tras una breve revisión.",
@@ -207,6 +208,7 @@
     "reviews.write": "Write a review",
     "reviews.empty": "Be the first to leave us a review.",
     "reviews.no_body": "(no additional comment)",
+    "reviews.read_full": "Read full review",
 
     "form.title": "Share your experience",
     "form.subtitle": "Your review will appear after a brief review.",

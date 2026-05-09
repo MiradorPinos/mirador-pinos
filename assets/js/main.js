@@ -17,7 +17,7 @@ const state = {
 
 // ── Boot ───────────────────────────────────────────────────────────────────
 (async function init() {
-  state.i18n = await fetch('assets/js/i18n.json').then(r => r.json());
+  state.i18n = await fetch('assets/js/i18n.json', { cache: 'no-cache' }).then(r => r.json());
   state.lang = pickInitialLang();
 
   applyTranslations();
@@ -28,6 +28,7 @@ const state = {
   setupForm();
   setupWhatsApp();
   setupPlaces();
+  setupReviewDetail();
 
   await loadReviews();
 })();
@@ -191,6 +192,10 @@ function setupReviewsCarousel() {
 function reviewCard(r) {
   const card = document.createElement('article');
   card.className = 'review-card';
+  card.setAttribute('role', 'button');
+  card.setAttribute('tabindex', '0');
+  card.setAttribute('aria-label', `${t('reviews.read_full')} — ${r.author || '—'}`);
+
   const stars = '★'.repeat(r.rating || 0) + '☆'.repeat(5 - (r.rating || 0));
   const body = (r.body || '').trim();
   const dateStr = formatDate(r.date);
@@ -198,17 +203,88 @@ function reviewCard(r) {
     <div class="review-stars" aria-label="${r.rating} / 5">${stars}</div>
     ${r.title ? `<h3 class="review-title"></h3>` : ''}
     <p class="review-body ${body ? '' : 'empty'}"></p>
+    <p class="review-readmore"></p>
     <div class="review-meta">
       <span class="review-author"></span>
       <span class="review-date"></span>
     </div>
   `;
-  // Use textContent to avoid any HTML in user-submitted bodies being interpreted
+  // textContent everywhere to prevent any HTML in user-submitted content from being interpreted
   if (r.title) card.querySelector('.review-title').textContent = r.title;
   card.querySelector('.review-body').textContent = body || t('reviews.no_body');
+  card.querySelector('.review-readmore').textContent = t('reviews.read_full') + ' →';
   card.querySelector('.review-author').textContent = r.author || '—';
   card.querySelector('.review-date').textContent = dateStr;
+
+  const open = () => openReviewDetail(r);
+  card.addEventListener('click', open);
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+  });
   return card;
+}
+
+// ── Review-detail modal (fullscreen on mobile) ─────────────────────────────
+function setupReviewDetail() {
+  const rd = document.getElementById('review-detail');
+  if (!rd) return;
+
+  rd.querySelectorAll('[data-rd-close]').forEach(btn => {
+    btn.addEventListener('click', () => closeReviewDetail());
+  });
+
+  document.addEventListener('keydown', e => {
+    if (!rd.hidden && e.key === 'Escape') closeReviewDetail();
+  });
+
+  // Browser back button → close. We push a history state on open so back()
+  // pops it off and triggers popstate, with no URL hash pollution.
+  window.addEventListener('popstate', e => {
+    if (!rd.hidden) {
+      // History already popped — close the modal but DON'T call history.back()
+      closeReviewDetail({ skipHistory: true });
+    }
+  });
+}
+
+let _rdOpenerEl = null; // remember which card to refocus on close
+function openReviewDetail(r) {
+  const rd = document.getElementById('review-detail');
+  if (!rd) return;
+
+  // Populate
+  const stars = '★'.repeat(r.rating || 0) + '☆'.repeat(5 - (r.rating || 0));
+  document.getElementById('rd-stars').textContent  = stars;
+  document.getElementById('rd-title').textContent  = r.title || '';
+  const bodyEl = document.getElementById('rd-body');
+  bodyEl.textContent = (r.body || '').trim() || t('reviews.no_body');
+  bodyEl.classList.toggle('empty', !(r.body || '').trim());
+  document.getElementById('rd-author').textContent = r.author || '—';
+  document.getElementById('rd-date').textContent   = formatDate(r.date);
+
+  // Remember focus origin
+  _rdOpenerEl = document.activeElement;
+
+  // Show
+  rd.hidden = false;
+  rd.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => rd.querySelector('.rd-close')?.focus(), 30);
+
+  // Push history so the back button closes it (without changing the URL)
+  history.pushState({ rd: true }, '');
+}
+
+function closeReviewDetail({ skipHistory = false } = {}) {
+  const rd = document.getElementById('review-detail');
+  if (!rd || rd.hidden) return;
+  rd.hidden = true;
+  rd.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  if (!skipHistory && history.state && history.state.rd) history.back();
+  if (_rdOpenerEl && typeof _rdOpenerEl.focus === 'function') {
+    setTimeout(() => _rdOpenerEl.focus(), 30);
+  }
 }
 
 function formatDate(iso) {
