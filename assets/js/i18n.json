@@ -2,7 +2,7 @@
   "es": {
     "html.lang": "es",
     "site.title": "🌲 Mirador Los Pinos 🌲 — Cabañas en Santiago Undameo",
-    "site.description": "3 cabañas equipadas en medio del bosque, a 20 minutos de Morelia. Relájate, diviértete y descansa.",
+    "site.description": "Cuatro cabañas equipadas rodeadas de naturaleza, a 20 minutos de Morelia. Relájate, diviértete y descansa.",
 
     "nav.home": "Inicio",
     "nav.cabins": "Cabañas",
@@ -13,7 +13,7 @@
 
     "hero.tagline": "Relájate, diviértete y descansa",
     "hero.title": "Mirador Los Pinos",
-    "hero.subtitle": "Cuatro cabañas equipadas en medio del bosque, a 20 minutos de Morelia.",
+    "hero.subtitle": "Cuatro cabañas equipadas rodeadas de naturaleza, a 20 minutos de Morelia.",
     "hero.cta": "Reserva por WhatsApp",
     "hero.cta_secondary": "Ver cabañas",
 
@@ -35,13 +35,13 @@
     "features.kids": "Área de juegos infantiles",
     "features.kids_desc": "Resbaladilla, brincolín y columpios para los más peques.",
     "features.bikes": "Bicicletas",
-    "features.bikes_desc": "Para pasear por los senderos del bosque a tu propio ritmo.",
+    "features.bikes_desc": "Para recorrer los alrededores del lugar a tu propio ritmo.",
     "features.wifi": "WiFi",
     "features.wifi_desc": "Conexión a internet en las cabañas, para que sigas conectado si lo necesitas.",
     "features.private": "Privado y seguro",
     "features.private_desc": "Espacio exclusivo, sin sorpresas y con accesos controlados.",
     "features.nature": "Rodeado de naturaleza",
-    "features.nature_desc": "Pinos, aire limpio y mucha tranquilidad — el bosque es tu vecino.",
+    "features.nature_desc": "Pinos, aire limpio y mucha tranquilidad — pura vida de campo.",
 
     "gallery.eyebrow": "Galería",
     "gallery.title": "Un vistazo al lugar",
@@ -60,7 +60,7 @@
     "nearby.plaza.body": "El corazón del pueblo, con su kiosco tradicional y los portales coloniales. Una caminata corta antes de salir hacia las cabañas o de regreso por la noche.",
     "nearby.plaza.distance": "En el pueblo",
     "nearby.umecuaro.title": "Presa de Umécuaro",
-    "nearby.umecuaro.body": "Aguas de manantial rodeadas de bosque. Renta de lanchas, kayak, pesca y la tirolesa Tres Cascadas de más de 600 metros sobre la presa. En verano se ven luciérnagas en los senderos.",
+    "nearby.umecuaro.body": "Aguas de manantial rodeadas de pinos. Renta de lanchas, kayak, pesca y la tirolesa Tres Cascadas de más de 600 metros sobre la presa. En verano se ven luciérnagas en los senderos.",
     "nearby.umecuaro.distance": "A 25 min en coche",
     "nearby.cointzio.title": "Presa de Cointzio",
     "nearby.cointzio.body": "El embalse más cercano al Mirador, ideal para una caminata tranquila a la orilla del agua, fotografía y pesca de charales.",
@@ -131,7 +131,7 @@
   "en": {
     "html.lang": "en",
     "site.title": "🌲 Mirador Los Pinos 🌲 — Cabins in Santiago Undameo",
-    "site.description": "3 fully equipped cabins in the forest, 20 minutes from Morelia. Relax, enjoy, and rest.",
+    "site.description": "Four fully equipped cabins surrounded by nature, 20 minutes from Morelia. Relax, enjoy, and rest.",
 
     "nav.home": "Home",
     "nav.cabins": "Cabins",
@@ -142,7 +142,7 @@
 
     "hero.tagline": "Relax, enjoy, and rest",
     "hero.title": "Mirador Los Pinos",
-    "hero.subtitle": "Four fully equipped cabins in the forest, 20 minutes from Morelia.",
+    "hero.subtitle": "Four fully equipped cabins surrounded by nature, 20 minutes from Morelia.",
     "hero.cta": "Book on WhatsApp",
     "hero.cta_secondary": "See the cabins",
 
@@ -164,13 +164,13 @@
     "features.kids": "Kids' play area",
     "features.kids_desc": "Slide, bouncy castle, and swings for the little ones.",
     "features.bikes": "Bikes",
-    "features.bikes_desc": "Cruise the forest trails at your own pace.",
+    "features.bikes_desc": "Roam around the property at your own pace.",
     "features.wifi": "WiFi",
     "features.wifi_desc": "Internet in the cabins — stay connected if you need to.",
     "features.private": "Private & secure",
     "features.private_desc": "Exclusive space, no surprises, with controlled access.",
     "features.nature": "Surrounded by nature",
-    "features.nature_desc": "Pines, fresh air, and quiet — the forest is your neighbor.",
+    "features.nature_desc": "Pines, fresh air, and quiet — proper countryside living.",
 
     "gallery.eyebrow": "Gallery",
     "gallery.title": "A look around",
@@ -189,7 +189,7 @@
     "nearby.plaza.body": "The heart of the village, with its traditional kiosk and the colonial portales around it. A short walk on the way to or back from the cabins.",
     "nearby.plaza.distance": "In the village",
     "nearby.umecuaro.title": "Presa de Umécuaro",
-    "nearby.umecuaro.body": "Spring-fed waters ringed by pine forest. Boat and kayak rentals, fishing, and the 600 m+ Tres Cascadas zipline that flies over the lake. In summer the trails light up with fireflies.",
+    "nearby.umecuaro.body": "Spring-fed waters ringed by pines. Boat and kayak rentals, fishing, and the 600 m+ Tres Cascadas zipline that flies over the lake. In summer the trails light up with fireflies.",
     "nearby.umecuaro.distance": "25 min drive",
     "nearby.cointzio.title": "Presa de Cointzio",
     "nearby.cointzio.body": "The closest reservoir to the cabins. Perfect for a quiet lakeside walk, photography, and charal fishing.",
