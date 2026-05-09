@@ -1,0 +1,28 @@
+{
+  "reviews": [
+    {
+      "id": "2026-04-12-carlos-contreras",
+      "author": "Carlos Contreras",
+      "date": "2026-04-12",
+      "rating": 5,
+      "title": "Excelente y hermoso lugar!",
+      "body": "Es un lugar muy bonito, con buen gusto, todos los detalles están muy bien cuidados, muy seguro, equipado al 100% cerca de Morelia, en un ambiente muy campestre y tranquilo además de ser muy seguro, Gustavo el anfitrión es muy amable y está siempre al pendiente así como su asistente Germán, en todo momento atentos a tus necesidades, cuenta con todas las comodidades que brinda la tecnología y con la tranquilidad y entorno natural y campestre! Ampliamente recomendable, muy buena relación calidad-precio! Pasamos unos días muy agradables en familia, seguramente pronto regresamos! Saludos! Muchas gracias 🙏🏻☺️👊"
+    },
+    {
+      "id": "2026-02-15-maritza-soto",
+      "author": "Maritza Soto",
+      "date": "2026-02-15",
+      "rating": 5,
+      "title": "Tranquilidad absoluta",
+      "body": "Un lugar muy tranquilo para disfrutar en familia, el lugar se encuentra muy limpio y equipada para poder traer tus alimentos y prepararlos, además cuenta con fogata para pasar momentos únicos con tu pareja o familia, 10 de 10 :)"
+    },
+    {
+      "id": "2026-01-10-anonimo",
+      "author": "Anónimo",
+      "date": "2026-01-10",
+      "rating": 5,
+      "title": "Excelente lugar.",
+      "body": ""
+    }
+  ]
+}

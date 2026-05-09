@@ -1,0 +1,17 @@
+name = "mirador-reviews"
+main = "worker.js"
+compatibility_date = "2026-05-01"
+
+# After `wrangler kv:namespace create RATE`, paste the id here:
+# [[kv_namespaces]]
+# binding = "RATE"
+# id = "PASTE_ID_HERE"
+
+# Set these as Worker secrets, NOT in this file:
+#   wrangler secret put GH_TOKEN
+#   wrangler secret put TURNSTILE_SECRET    # optional
+#
+# Set these as plain vars (they're not sensitive):
+[vars]
+GH_REPO        = "your-username/mirador-pinos"
+ALLOWED_ORIGIN = "https://miradorpinos.com"

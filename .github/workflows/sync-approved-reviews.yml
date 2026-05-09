@@ -1,0 +1,137 @@
+name: Sync approved reviews
+
+# Triggers when an issue is closed (manually) and we want to fold its content
+# into data/reviews.json.
+#
+# Workflow:
+#   1. A visitor submits the form on the site.
+#   2. The Worker creates an issue with label `review-pending`.
+#   3. You (the owner) review it. If good: add label `review-approved`,
+#      then close the issue. If bad: just close it.
+#   4. This Action runs, finds all closed issues with `review-approved`
+#      that aren't yet in reviews.json, parses the YAML block, appends
+#      them, commits, and pushes — which auto-redeploys Pages.
+
+on:
+  issues:
+    types: [closed, labeled]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sync approved reviews
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = 'data/reviews.json';
+            const file = JSON.parse(fs.readFileSync(path, 'utf8'));
+            const existingIds = new Set(file.reviews.map(r => r.id));
+
+            // Pull all closed issues with the approved label
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'closed',
+              labels: 'review-approved',
+              per_page: 100,
+            });
+
+            let added = 0;
+            for (const issue of issues) {
+              const m = (issue.body || '').match(
+                /<!-- review-data:start -->\s*```yaml\s*([\s\S]*?)```\s*<!-- review-data:end -->/
+              );
+              if (!m) {
+                core.warning(`Issue #${issue.number} has no review-data block`);
+                continue;
+              }
+
+              const parsed = parseYaml(m[1]);
+              if (!parsed.author || !parsed.rating) {
+                core.warning(`Issue #${issue.number} missing required fields`);
+                continue;
+              }
+
+              const date = (issue.closed_at || issue.created_at).slice(0, 10);
+              const slug = parsed.author.toLowerCase()
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+              const id = `${date}-${slug}-i${issue.number}`;
+
+              if (existingIds.has(id)) continue;
+
+              file.reviews.push({
+                id,
+                author: parsed.author,
+                date,
+                rating: Number(parsed.rating),
+                title: parsed.title || '',
+                body: parsed.body || '',
+                source_issue: issue.number,
+              });
+              existingIds.add(id);
+              added++;
+            }
+
+            if (added === 0) {
+              core.info('No new approved reviews to sync.');
+              return;
+            }
+
+            // Sort newest first
+            file.reviews.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+            fs.writeFileSync(path, JSON.stringify(file, null, 2) + '\n');
+            core.info(`Added ${added} review(s) to ${path}`);
+
+            // Commit + push
+            const { execSync } = require('child_process');
+            execSync('git config user.name "github-actions[bot]"');
+            execSync('git config user.email "41898282+github-actions[bot]@users.noreply.github.com"');
+            execSync(`git add ${path}`);
+            execSync(`git commit -m "reviews: sync ${added} approved review(s) from issues"`);
+            execSync('git push');
+
+            // ── tiny YAML parser, just for our known shape ──────────────
+            function parseYaml(src) {
+              const out = {};
+              const lines = src.split('\n');
+              let i = 0;
+              while (i < lines.length) {
+                const line = lines[i];
+                if (!line.trim()) { i++; continue; }
+                const blockMatch = line.match(/^(\w+):\s*\|\s*$/);
+                if (blockMatch) {
+                  const key = blockMatch[1];
+                  const buf = [];
+                  i++;
+                  while (i < lines.length && /^( {2,}|\t)/.test(lines[i])) {
+                    buf.push(lines[i].replace(/^ {2}/, ''));
+                    i++;
+                  }
+                  out[key] = buf.join('\n').trimEnd();
+                  continue;
+                }
+                const kv = line.match(/^(\w+):\s*(.*)$/);
+                if (kv) {
+                  let v = kv[2].trim();
+                  if (v.startsWith('"') && v.endsWith('"')) {
+                    try { v = JSON.parse(v); } catch {}
+                  } else if (/^-?\d+$/.test(v)) {
+                    v = Number(v);
+                  }
+                  out[kv[1]] = v;
+                }
+                i++;
+              }
+              return out;
+            }

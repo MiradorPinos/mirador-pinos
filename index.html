@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="site.title">Mirador Los Pinos</title>
+  <meta name="description" data-i18n-attr="content" data-i18n="site.description" content="" />
+  <meta name="theme-color" content="#2d4a3a" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" data-i18n-attr="content" data-i18n="site.title" content="" />
+  <meta property="og:description" data-i18n-attr="content" data-i18n="site.description" content="" />
+  <meta property="og:image" content="images/hero.jpg" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<!-- ───── Header ───── -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">🌲</span>
+      <span class="brand-name">Mirador Los Pinos</span>
+    </a>
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="#about" data-i18n="nav.cabins">Cabañas</a>
+      <a href="#nearby" data-i18n="nav.nearby">Qué hacer</a>
+      <a href="#reviews" data-i18n="nav.reviews">Reseñas</a>
+      <a href="#location" data-i18n="nav.location">Ubicación</a>
+    </nav>
+    <div class="header-actions">
+      <button class="lang-toggle" id="lang-toggle" aria-label="Cambiar idioma">
+        <span data-lang-active>ES</span><span class="sep">·</span><span data-lang-inactive>EN</span>
+      </button>
+      <a class="btn btn-primary btn-sm" href="#contact" data-i18n="nav.book">Reservar</a>
+    </div>
+  </div>
+</header>
+
+<!-- ───── Hero ───── -->
+<section id="top" class="hero">
+  <div class="hero-image" style="background-image: url('images/hero.jpg')"></div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <p class="eyebrow eyebrow-light" data-i18n="hero.tagline">Relájate, diviértete y descansa</p>
+    <h1 class="hero-title" data-i18n="hero.title">Mirador Los Pinos</h1>
+    <p class="hero-subtitle" data-i18n="hero.subtitle"></p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#contact" data-i18n="hero.cta">Reserva por WhatsApp</a>
+      <a class="btn btn-ghost" href="#about" data-i18n="hero.cta_secondary">Ver cabañas</a>
+    </div>
+  </div>
+</section>
+
+<!-- ───── About ───── -->
+<section id="about" class="section section-about">
+  <div class="container narrow">
+    <p class="eyebrow" data-i18n="about.eyebrow">El lugar</p>
+    <h2 class="section-title" data-i18n="about.title">Naturaleza, privacidad y comodidad</h2>
+    <p class="lede" data-i18n="about.body"></p>
+    <p data-i18n="about.body2"></p>
+  </div>
+
+  <div class="container">
+    <ul class="features">
+      <li class="feature">
+        <span class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </span>
+        <h3 data-i18n="features.cabins">3 cabañas equipadas</h3>
+        <p data-i18n="features.cabins_desc"></p>
+      </li>
+      <li class="feature">
+        <span class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>
+        </span>
+        <h3 data-i18n="features.kitchen">Cocina y asadores</h3>
+        <p data-i18n="features.kitchen_desc"></p>
+      </li>
+      <li class="feature">
+        <span class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </span>
+        <h3 data-i18n="features.dome">Domo geodésico con karaoke</h3>
+        <p data-i18n="features.dome_desc"></p>
+      </li>
+      <li class="feature">
+        <span class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14 16 4l12 10"/><path d="M6 14v14h20V14"/><path d="M3 14h26"/><path d="M11 28v-8h10v8"/></svg>
+        </span>
+        <h3 data-i18n="features.gazebo">Quiosco amplio</h3>
+        <p data-i18n="features.gazebo_desc"></p>
+      </li>
+      <li class="feature">
+        <span class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+        </span>
+        <h3 data-i18n="features.firepit">Fogata</h3>
+        <p data-i18n="features.firepit_desc"></p>
+      </li>
+      <li class="feature">
+        <span class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 26 18 8l10 14"/><path d="M4 26h24"/><path d="M14 26v-7h6v7"/><circle cx="8" cy="22" r="1.5"/><circle cx="24" cy="22" r="1.5"/></svg>
+        </span>
+        <h3 data-i18n="features.kids">Área para niños</h3>
+        <p data-i18n="features.kids_desc"></p>
+      </li>
+      <li class="feature">
+        <span class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/></svg>
+        </span>
+        <h3 data-i18n="features.bikes">Bicicletas</h3>
+        <p data-i18n="features.bikes_desc"></p>
+      </li>
+      <li class="feature">
+        <span class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r=".7" fill="currentColor"/></svg>
+        </span>
+        <h3 data-i18n="features.wifi">WiFi</h3>
+        <p data-i18n="features.wifi_desc"></p>
+      </li>
+      <li class="feature">
+        <span class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </span>
+        <h3 data-i18n="features.private">Privado y seguro</h3>
+        <p data-i18n="features.private_desc"></p>
+      </li>
+      <li class="feature">
+        <span class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17z"/><path d="M12 22v-3"/></svg>
+        </span>
+        <h3 data-i18n="features.nature">Rodeado de naturaleza</h3>
+        <p data-i18n="features.nature_desc"></p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ───── Gallery ───── -->
+<section id="gallery" class="section section-gallery">
+  <div class="container narrow">
+    <p class="eyebrow" data-i18n="gallery.eyebrow">Galería</p>
+    <h2 class="section-title" data-i18n="gallery.title">Un vistazo al lugar</h2>
+    <p class="muted" data-i18n="gallery.hint"></p>
+  </div>
+  <div class="container">
+    <div class="gallery" id="gallery">
+      <button class="g-item g-item-tall" data-img="images/cabin-01.jpg"><img src="images/cabin-01.jpg" alt="Cabaña" loading="lazy"></button>
+      <button class="g-item" data-img="images/cabin-02.jpg"><img src="images/cabin-02.jpg" alt="Cabaña" loading="lazy"></button>
+      <button class="g-item" data-img="images/cabin-03.jpg"><img src="images/cabin-03.jpg" alt="Cabaña" loading="lazy"></button>
+      <button class="g-item" data-img="images/cabin-04.jpg"><img src="images/cabin-04.jpg" alt="Cabaña" loading="lazy"></button>
+      <button class="g-item g-item-wide" data-img="images/cabin-05.jpg"><img src="images/cabin-05.jpg" alt="Cabaña" loading="lazy"></button>
+      <button class="g-item" data-img="images/cabin-06.jpg"><img src="images/cabin-06.jpg" alt="Cabaña" loading="lazy"></button>
+      <button class="g-item" data-img="images/cabin-07.jpg"><img src="images/cabin-07.jpg" alt="Cabaña" loading="lazy"></button>
+      <button class="g-item" data-img="images/cabin-08.jpg"><img src="images/cabin-08.jpg" alt="Cabaña" loading="lazy"></button>
+      <button class="g-item" data-img="images/cabin-09.jpg"><img src="images/cabin-09.jpg" alt="Cabaña" loading="lazy"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ───── Places of interest ───── -->
+<section id="nearby" class="section section-nearby">
+  <div class="container narrow">
+    <p class="eyebrow" data-i18n="nearby.eyebrow">Qué hacer cerca</p>
+    <h2 class="section-title" data-i18n="nearby.title">Naturaleza, cultura y sabor a un paso</h2>
+    <p class="lede" data-i18n="nearby.lede"></p>
+  </div>
+
+  <div class="container">
+    <div class="places-grid">
+      <article class="place place-featured" data-map="https://maps.google.com/?q=Presa+de+Um%C3%A9cuaro">
+        <div class="place-image" style="background-image:url('images/place-umecuaro.jpg')"></div>
+        <div class="place-overlay"></div>
+        <div class="place-content">
+          <span class="place-tag" data-i18n="nearby.tag.lake">Lago</span>
+          <h3 data-i18n="nearby.umecuaro.title">Presa de Umécuaro</h3>
+          <p data-i18n="nearby.umecuaro.body"></p>
+          <p class="place-meta">
+            <span class="dot"></span>
+            <span data-i18n="nearby.umecuaro.distance">A 25 min en coche</span>
+          </p>
+        </div>
+      </article>
+
+      <article class="place" data-map="https://maps.google.com/?q=Presa+de+Cointzio">
+        <div class="place-image" style="background-image:url('images/place-cointzio.jpg')"></div>
+        <div class="place-overlay"></div>
+        <div class="place-content">
+          <span class="place-tag" data-i18n="nearby.tag.lake">Lago</span>
+          <h3 data-i18n="nearby.cointzio.title">Presa de Cointzio</h3>
+          <p data-i18n="nearby.cointzio.body"></p>
+          <p class="place-meta">
+            <span class="dot"></span>
+            <span data-i18n="nearby.cointzio.distance">A 10 min en coche</span>
+          </p>
+        </div>
+      </article>
+
+      <article class="place" data-map="https://maps.google.com/?q=Centro+Hist%C3%B3rico+de+Morelia">
+        <div class="place-image" style="background-image:url('images/place-morelia.jpg')"></div>
+        <div class="place-overlay"></div>
+        <div class="place-content">
+          <span class="place-tag" data-i18n="nearby.tag.culture">Cultura</span>
+          <h3 data-i18n="nearby.morelia.title">Centro Histórico de Morelia</h3>
+          <p data-i18n="nearby.morelia.body"></p>
+          <p class="place-meta">
+            <span class="dot"></span>
+            <span data-i18n="nearby.morelia.distance">A 20 min en coche</span>
+          </p>
+        </div>
+      </article>
+
+      <article class="place" data-map="https://maps.google.com/?q=Santiago+Undameo+pulque">
+        <div class="place-image" style="background-image:url('images/place-pulque.jpg')"></div>
+        <div class="place-overlay"></div>
+        <div class="place-content">
+          <span class="place-tag" data-i18n="nearby.tag.tradition">Tradición</span>
+          <h3 data-i18n="nearby.pulque.title">Pulque artesanal</h3>
+          <p data-i18n="nearby.pulque.body"></p>
+          <p class="place-meta">
+            <span class="dot"></span>
+            <span data-i18n="nearby.pulque.distance">En el pueblo</span>
+          </p>
+        </div>
+      </article>
+
+      <article class="place" data-map="https://maps.google.com/?q=truchas+Um%C3%A9cuaro">
+        <div class="place-image" style="background-image:url('images/place-truchas.jpg')"></div>
+        <div class="place-overlay"></div>
+        <div class="place-content">
+          <span class="place-tag" data-i18n="nearby.tag.food">Sabor local</span>
+          <h3 data-i18n="nearby.truchas.title">Truchas a la orilla del lago</h3>
+          <p data-i18n="nearby.truchas.body"></p>
+          <p class="place-meta">
+            <span class="dot"></span>
+            <span data-i18n="nearby.truchas.distance">A 25 min en coche</span>
+          </p>
+        </div>
+      </article>
+    </div>
+
+    <!-- Guest perks -->
+    <section class="perks" aria-labelledby="perks-title">
+      <header class="perks-header">
+        <p class="eyebrow" data-i18n="perks.eyebrow">Para nuestros huéspedes</p>
+        <h3 id="perks-title" data-i18n="perks.title">Beneficios para huéspedes</h3>
+      </header>
+
+      <ul class="perk-list">
+        <li class="perk-row">
+          <div class="perk-badge">
+            <span class="perk-badge-tag" data-i18n="perks.la-palma.tag">Descuento</span>
+          </div>
+          <div class="perk-row-body">
+            <h4 data-i18n="perks.la-palma.title">La Palma Restaurante Campestre</h4>
+            <p data-i18n="perks.la-palma.body">Restaurante campestre en Santiago Undameo, a unos minutos de las cabañas. Ideal para una comida tranquila al aire libre.</p>
+            <div class="perk-actions">
+              <a class="btn btn-primary btn-sm"
+                 href="https://www.google.com/maps/place/LA+PALMA+RESTAURANTE+CAMPESTRE/@19.5883908,-101.2738959,17z/data=!4m7!3m6!1s0x842d75f939df1c29:0xa5d9dca0ba9fbee8!8m2!3d19.5883683!4d-101.2739064!10e5!16s%2Fg%2F11h8b4vnq4"
+                 target="_blank" rel="noopener" data-i18n="perks.directions">Cómo llegar</a>
+              <a class="btn btn-ghost btn-sm" href="#contact" data-i18n="perks.howto">Cómo lo aplico</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <p class="muted small center" data-i18n="nearby.credits"></p>
+  </div>
+</section>
+
+<!-- ───── Reviews ───── -->
+<section id="reviews" class="section section-reviews">
+  <div class="container narrow">
+    <p class="eyebrow" data-i18n="reviews.eyebrow">Reseñas</p>
+    <h2 class="section-title" data-i18n="reviews.title">Lo que dicen nuestros huéspedes</h2>
+    <p class="reviews-summary" id="reviews-summary"></p>
+    <button class="btn btn-ghost" id="open-review-form" data-i18n="reviews.write">Escribir una reseña</button>
+  </div>
+  <div class="container">
+    <div class="reviews-grid" id="reviews-grid"></div>
+  </div>
+</section>
+
+<!-- ───── Review form modal ───── -->
+<div class="modal" id="review-modal" hidden>
+  <div class="modal-backdrop" data-close-modal></div>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="review-form-title">
+    <button class="modal-close" data-close-modal aria-label="Cerrar">×</button>
+    <h3 id="review-form-title" data-i18n="form.title">Comparte tu experiencia</h3>
+    <p class="muted" data-i18n="form.subtitle"></p>
+
+    <form id="review-form" novalidate>
+      <label class="field">
+        <span data-i18n="form.name">Tu nombre</span>
+        <input name="author" type="text" required maxlength="80" data-i18n-attr="placeholder" data-i18n="form.name_placeholder" />
+      </label>
+
+      <fieldset class="field">
+        <legend data-i18n="form.rating">Calificación</legend>
+        <div class="rating-input" role="radiogroup">
+          <label><input type="radio" name="rating" value="5" required><span>★★★★★</span></label>
+          <label><input type="radio" name="rating" value="4"><span>★★★★</span></label>
+          <label><input type="radio" name="rating" value="3"><span>★★★</span></label>
+          <label><input type="radio" name="rating" value="2"><span>★★</span></label>
+          <label><input type="radio" name="rating" value="1"><span>★</span></label>
+        </div>
+      </fieldset>
+
+      <label class="field">
+        <span data-i18n="form.headline">Título</span>
+        <input name="title" type="text" maxlength="120" data-i18n-attr="placeholder" data-i18n="form.headline_placeholder" />
+      </label>
+
+      <label class="field">
+        <span data-i18n="form.body">Tu reseña</span>
+        <textarea name="body" rows="5" maxlength="2000" data-i18n-attr="placeholder" data-i18n="form.body_placeholder"></textarea>
+      </label>
+
+      <!-- honeypot -->
+      <label class="hp-field" aria-hidden="true">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" />
+      </label>
+
+      <p class="form-status" id="form-status" role="status"></p>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn-ghost" data-close-modal data-i18n="form.cancel">Cancelar</button>
+        <button type="submit" class="btn btn-primary" id="submit-btn" data-i18n="form.submit">Enviar reseña</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ───── Location ───── -->
+<section id="location" class="section section-location">
+  <div class="container narrow">
+    <p class="eyebrow" data-i18n="location.eyebrow">Ubicación</p>
+    <h2 class="section-title" data-i18n="location.title">A 20 minutos de Morelia</h2>
+    <p data-i18n="location.body"></p>
+    <a class="btn btn-ghost" href="https://maps.google.com/?q=Santiago+Undameo+Morelia" target="_blank" rel="noopener" data-i18n="location.directions">Cómo llegar</a>
+  </div>
+</section>
+
+<!-- ───── Contact ───── -->
+<section id="contact" class="section section-contact">
+  <div class="container narrow center">
+    <h2 class="section-title" data-i18n="contact.title">¿Listo para reservar?</h2>
+    <p data-i18n="contact.body"></p>
+    <a class="btn btn-whatsapp btn-lg" href="https://wa.me/" id="whatsapp-cta">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor">
+        <path d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.7.9 3.7 1.4 5.7 1.4h.1c6.6 0 12-5.4 12-12 0-3.2-1.2-6.2-3.5-8.4ZM12 22c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.9 9.9 0 0 1 2 12c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10Zm5.5-7.5-2.1-.6c-.3-.1-.5 0-.8.3l-.6.8c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.6-.6-1-1.3-1.3-2-.1-.2-.1-.4.1-.5l.7-.6c.2-.2.3-.5.2-.8L10.5 8c-.1-.3-.4-.5-.7-.5h-1c-.4 0-.8.3-.8.7C7.7 12.5 11.5 16.3 15.8 16.5c.4 0 .7-.4.7-.8v-.9c0-.3-.2-.6-.5-.7Z"/>
+      </svg>
+      <span data-i18n="contact.whatsapp">Escríbenos por WhatsApp</span>
+    </a>
+  </div>
+</section>
+
+<!-- ───── Footer ───── -->
+<footer class="site-footer">
+  <div class="container">
+    <p class="brand"><span>🌲</span> Mirador Los Pinos <span>🌲</span></p>
+    <p class="muted" data-i18n="footer.tagline"></p>
+    <p class="muted small" data-i18n="footer.santiago"></p>
+    <p class="muted small" data-i18n="footer.copyright" id="copyright"></p>
+  </div>
+</footer>
+
+<!-- ───── WhatsApp floating widget ───── -->
+<div class="wa-widget" id="wa-widget">
+  <div class="wa-panel" id="wa-panel" hidden role="dialog" aria-labelledby="wa-title">
+    <div class="wa-panel-header">
+      <div class="wa-avatar" aria-hidden="true">🌲</div>
+      <div class="wa-panel-meta">
+        <p class="wa-panel-name" id="wa-title">Mirador Los Pinos</p>
+        <p class="wa-panel-status">
+          <span class="wa-dot"></span>
+          <span data-i18n="wa.online">En línea</span>
+        </p>
+      </div>
+      <button class="wa-panel-close" id="wa-close" aria-label="Cerrar">×</button>
+    </div>
+    <div class="wa-panel-body">
+      <div class="wa-bubble">
+        <p class="wa-bubble-from">Mirador Los Pinos</p>
+        <p data-i18n="wa.greeting">¡Hola! 👋 ¿En qué te podemos ayudar?</p>
+        <p class="wa-bubble-time">— ahora</p>
+      </div>
+    </div>
+    <div class="wa-panel-footer">
+      <a class="wa-cta" id="wa-cta" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor">
+          <path d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.7.9 3.7 1.4 5.7 1.4h.1c6.6 0 12-5.4 12-12 0-3.2-1.2-6.2-3.5-8.4ZM12 22c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.9 9.9 0 0 1 2 12c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10Zm5.5-7.5-2.1-.6c-.3-.1-.5 0-.8.3l-.6.8c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.6-.6-1-1.3-1.3-2-.1-.2-.1-.4.1-.5l.7-.6c.2-.2.3-.5.2-.8L10.5 8c-.1-.3-.4-.5-.7-.5h-1c-.4 0-.8.3-.8.7C7.7 12.5 11.5 16.3 15.8 16.5c.4 0 .7-.4.7-.8v-.9c0-.3-.2-.6-.5-.7Z"/>
+        </svg>
+        <span data-i18n="wa.start">Comenzar conversación</span>
+      </a>
+      <p class="wa-panel-hint">
+        <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" fill="currentColor"><path d="M13.6 2.4a8 8 0 1 0 1.7 8.7L16 16l-4.9-1.6a8 8 0 0 0 2.5-12ZM8 14.4a6.4 6.4 0 0 1-3.2-.9l-.2-.1-2.4.8.8-2.3-.2-.3A6.4 6.4 0 1 1 8 14.4Z"/></svg>
+        <span data-i18n="wa.hint">Se abrirá WhatsApp</span>
+      </p>
+    </div>
+  </div>
+  <button class="wa-button" id="wa-button" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" fill="currentColor">
+      <path d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.7.9 3.7 1.4 5.7 1.4h.1c6.6 0 12-5.4 12-12 0-3.2-1.2-6.2-3.5-8.4ZM12 22c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.9 9.9 0 0 1 2 12c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10Zm5.5-7.5-2.1-.6c-.3-.1-.5 0-.8.3l-.6.8c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.6-.6-1-1.3-1.3-2-.1-.2-.1-.4.1-.5l.7-.6c.2-.2.3-.5.2-.8L10.5 8c-.1-.3-.4-.5-.7-.5h-1c-.4 0-.8.3-.8.7C7.7 12.5 11.5 16.3 15.8 16.5c.4 0 .7-.4.7-.8v-.9c0-.3-.2-.6-.5-.7Z"/>
+    </svg>
+    <span class="wa-button-label" data-i18n="wa.button">WhatsApp</span>
+  </button>
+</div>
+
+<!-- ───── Lightbox ───── -->
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-close" id="lb-close" aria-label="Cerrar">×</button>
+  <button class="lb-prev" id="lb-prev" aria-label="Anterior">‹</button>
+  <button class="lb-next" id="lb-next" aria-label="Siguiente">›</button>
+  <img id="lb-img" alt="" />
+</div>
+
+<script src="assets/js/main.js" type="module"></script>
+</body>
+</html>
