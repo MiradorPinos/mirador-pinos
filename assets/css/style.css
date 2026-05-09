@@ -317,6 +317,25 @@ p { margin: 0 0 1em; }
 
 /* ───── Places of interest ───── */
 .section-nearby { background: var(--cream); }
+.plaza-figure {
+  margin: 32px 0 8px;
+  padding: 0;
+}
+.plaza-figure img {
+  width: 100%;
+  height: clamp(220px, 38vw, 420px);
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  display: block;
+  box-shadow: var(--shadow);
+}
+.plaza-figure figcaption {
+  margin-top: 10px;
+  text-align: center;
+  font-size: .88rem;
+  color: var(--muted);
+  font-style: italic;
+}
 .places-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
