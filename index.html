@@ -328,8 +328,11 @@
       </label>
 
       <label class="field">
-        <span data-i18n="form.body">Tu reseña</span>
-        <textarea name="body" rows="5" maxlength="2000" data-i18n-attr="placeholder" data-i18n="form.body_placeholder"></textarea>
+        <span class="field-label-row">
+          <span data-i18n="form.body">Tu reseña</span>
+          <span class="char-counter" id="body-counter" aria-live="polite">0 / 711</span>
+        </span>
+        <textarea name="body" rows="5" maxlength="711" data-i18n-attr="placeholder" data-i18n="form.body_placeholder" id="review-body"></textarea>
       </label>
 
       <!-- honeypot -->

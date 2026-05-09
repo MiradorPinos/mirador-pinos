@@ -115,15 +115,21 @@ export default {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Body cap is "longest existing review + 100" = 611 + 100 = 711.
+// Bump this if a longer real review ever lands.
+const MAX_BODY_LEN = 711;
+const MAX_TITLE_LEN = 120;
+const MAX_AUTHOR_LEN = 80;
+
 function validate(p) {
   const errs = [];
-  if (typeof p.author !== 'string' || !p.author.trim() || p.author.length > 80)
+  if (typeof p.author !== 'string' || !p.author.trim() || p.author.length > MAX_AUTHOR_LEN)
     errs.push('author');
   if (!Number.isInteger(p.rating) || p.rating < 1 || p.rating > 5)
     errs.push('rating');
-  if (p.title != null && (typeof p.title !== 'string' || p.title.length > 120))
+  if (p.title != null && (typeof p.title !== 'string' || p.title.length > MAX_TITLE_LEN))
     errs.push('title');
-  if (p.body != null && (typeof p.body !== 'string' || p.body.length > 2000))
+  if (p.body != null && (typeof p.body !== 'string' || p.body.length > MAX_BODY_LEN))
     errs.push('body');
   if (p.lang && !['es', 'en'].includes(p.lang))
     errs.push('lang');
@@ -134,7 +140,7 @@ function buildIssue(p, meta) {
   const title = `[Reseña] ${p.rating}★ — ${p.author}${p.title ? `: ${p.title}` : ''}`;
 
   // Machine-readable block + human-readable summary.
-  // The GitHub Action reads the YAML between the markers to update reviews.json.
+  // The GitHub Action reads the YAML between the markers to rebuild reviews.json.
   const yaml = [
     'author: ' + JSON.stringify(p.author),
     'rating: ' + p.rating,
@@ -158,14 +164,13 @@ function buildIssue(p, meta) {
     '---',
     `_lang: ${p.lang || 'es'} · ip: ${meta.ip} · ua: ${meta.ua.slice(0, 120)}_`,
     '',
-    '**To approve:** edit the YAML above if needed, then add the `review-approved` label and close the issue. A GitHub Action will append it to `data/reviews.json`.',
-    '**To reject:** just close the issue without the label.',
+    '**This review is now live on the site.** To remove it, **delete or close** this issue — the next sync run will rebuild `data/reviews.json` and republish without it. To edit, change the YAML block above and the action will pick up the new content on the next event.',
   ].join('\n');
 
   return {
     title,
     body,
-    labels: ['review-pending'],
+    labels: ['review'],
   };
 }
 

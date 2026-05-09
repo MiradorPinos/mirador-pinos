@@ -290,6 +290,21 @@ function setupForm() {
   const form = document.getElementById('review-form');
   const status = document.getElementById('form-status');
   const submitBtn = document.getElementById('submit-btn');
+  const bodyEl = document.getElementById('review-body');
+  const counter = document.getElementById('body-counter');
+
+  // Live character counter
+  if (bodyEl && counter) {
+    const max = parseInt(bodyEl.getAttribute('maxlength'), 10) || 711;
+    const update = () => {
+      const len = bodyEl.value.length;
+      counter.textContent = `${len} / ${max}`;
+      counter.classList.toggle('near-limit', len > max * 0.85 && len < max);
+      counter.classList.toggle('at-limit', len >= max);
+    };
+    bodyEl.addEventListener('input', update);
+    update();
+  }
 
   form.addEventListener('submit', async e => {
     e.preventDefault();

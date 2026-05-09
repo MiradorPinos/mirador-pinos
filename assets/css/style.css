@@ -606,6 +606,22 @@ p { margin: 0 0 1em; }
 
 .field { display: block; margin: 18px 0; border: none; padding: 0; }
 .field > span, .field > legend { display: block; font-size: .88rem; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+.field-label-row {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.char-counter {
+  font-weight: 500 !important;
+  font-size: .78rem !important;
+  color: var(--muted) !important;
+  margin-bottom: 0 !important;
+  font-variant-numeric: tabular-nums;
+  transition: color .2s;
+}
+.char-counter.near-limit { color: var(--accent) !important; }
+.char-counter.at-limit { color: #b6452a !important; font-weight: 600 !important; }
 .field input[type=text], .field textarea {
   width: 100%;
   font: inherit;
