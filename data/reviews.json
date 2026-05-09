@@ -1,24 +1,6 @@
 {
   "reviews": [
     {
-      "id": "2026-05-09-origincheck-i8",
-      "author": "OriginCheck",
-      "date": "2026-05-09",
-      "rating": 5,
-      "title": "Test",
-      "body": "Verifying both origins work.",
-      "source_issue": 8
-    },
-    {
-      "id": "2026-05-09-origincheck-i7",
-      "author": "OriginCheck",
-      "date": "2026-05-09",
-      "rating": 5,
-      "title": "Test",
-      "body": "Verifying both origins work.",
-      "source_issue": 7
-    },
-    {
       "id": "2026-05-09-prueba-i6",
       "author": "Prueba",
       "date": "2026-05-09",
