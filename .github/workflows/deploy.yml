@@ -1,0 +1,53 @@
+name: Deploy to Cloudflare Pages
+
+# Runs on every push to main. Builds a clean output folder (the site files only,
+# excluding the Worker source and the workflows themselves) and uploads it to
+# the existing 'mirador-pinos' Cloudflare Pages project.
+#
+# Required repo secrets:
+#   CLOUDFLARE_API_TOKEN  — a Cloudflare API token with 'Cloudflare Pages: Edit'
+#                           on this account (rotate periodically).
+#   CLOUDFLARE_ACCOUNT_ID — Cloudflare account id.
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'worker/**'
+      - '.github/**'
+      - 'README.md'
+      - '.gitignore'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build deploy bundle
+        # Copy everything except the directories Pages doesn't need to serve.
+        run: |
+          mkdir -p _site
+          rsync -a \
+            --exclude='.git' --exclude='.github' --exclude='worker' \
+            --exclude='_site' --exclude='node_modules' \
+            --exclude='.credentials' --exclude='.DS_Store' \
+            ./ _site/
+          echo "--- _site contents ---"
+          find _site -maxdepth 2 | sort
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy _site --project-name=mirador-pinos --branch=main --commit-dirty=true

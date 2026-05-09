@@ -13,5 +13,5 @@ compatibility_date = "2026-05-01"
 #
 # Set these as plain vars (they're not sensitive):
 [vars]
-GH_REPO        = "your-username/mirador-pinos"
+GH_REPO        = "MiradorPinos/mirador-pinos"
 ALLOWED_ORIGIN = "https://miradorpinos.com"

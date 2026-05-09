@@ -1,7 +1,7 @@
 // ── Config ─────────────────────────────────────────────────────────────────
 const CONFIG = {
-  // Set this once you deploy the Worker. Until then, the form will show an error.
-  reviewSubmitEndpoint: '', // e.g. 'https://mirador-reviews.your-account.workers.dev'
+  // Cloudflare Worker that proxies submissions to GitHub Issues.
+  reviewSubmitEndpoint: 'https://mirador-reviews.iker-532.workers.dev',
   // WhatsApp number, international format, no + or spaces.
   whatsappNumber: '524431233903',
 };
@@ -122,6 +122,70 @@ function renderReviews() {
   for (const r of state.reviews) {
     grid.appendChild(reviewCard(r));
   }
+
+  setupReviewsCarousel();
+}
+
+// ── Reviews carousel (horizontal scroll, snap, nav, dots) ──────────────────
+function setupReviewsCarousel() {
+  const track = document.getElementById('reviews-grid');
+  const prev  = document.getElementById('rc-prev');
+  const next  = document.getElementById('rc-next');
+  const dots  = document.getElementById('reviews-dots');
+  if (!track) return;
+
+  const cards = () => Array.from(track.querySelectorAll('.review-card'));
+  const cardStep = () => {
+    const c = track.querySelector('.review-card');
+    if (!c) return 0;
+    const style = getComputedStyle(track);
+    const gap = parseFloat(style.columnGap || style.gap || '0');
+    return c.getBoundingClientRect().width + gap;
+  };
+  const hasOverflow = () => track.scrollWidth - track.clientWidth > 4;
+
+  function update() {
+    const overflow = hasOverflow();
+    if (prev) prev.hidden = !overflow;
+    if (next) next.hidden = !overflow;
+    if (prev) prev.disabled = track.scrollLeft <= 1;
+    if (next) next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+
+    if (dots) {
+      const list = cards();
+      const step = cardStep() || 1;
+      // How many cards roughly fit in the viewport
+      const perView = Math.max(1, Math.round(track.clientWidth / step));
+      const pages = Math.max(1, Math.ceil(list.length / perView));
+      dots.hidden = !overflow || pages < 2;
+
+      // Rebuild dots if count changed
+      if (dots.children.length !== pages) {
+        dots.innerHTML = '';
+        for (let i = 0; i < pages; i++) {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.setAttribute('role', 'tab');
+          b.setAttribute('aria-label', `Página ${i + 1}`);
+          b.addEventListener('click', () => {
+            track.scrollTo({ left: i * perView * step, behavior: 'smooth' });
+          });
+          dots.appendChild(b);
+        }
+      }
+      const active = Math.round(track.scrollLeft / (perView * step));
+      Array.from(dots.children).forEach((d, i) =>
+        d.setAttribute('aria-selected', i === active ? 'true' : 'false')
+      );
+    }
+  }
+
+  if (prev) prev.onclick = () => track.scrollBy({ left: -cardStep(), behavior: 'smooth' });
+  if (next) next.onclick = () => track.scrollBy({ left:  cardStep(), behavior: 'smooth' });
+
+  track.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+  window.addEventListener('resize', update);
+  update();
 }
 
 function reviewCard(r) {

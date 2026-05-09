@@ -288,7 +288,12 @@
     <button class="btn btn-ghost" id="open-review-form" data-i18n="reviews.write">Escribir una reseña</button>
   </div>
   <div class="container">
-    <div class="reviews-grid" id="reviews-grid"></div>
+    <div class="reviews-carousel" id="reviews-carousel">
+      <button class="rc-nav rc-prev" id="rc-prev" aria-label="Anterior" type="button" hidden>‹</button>
+      <div class="reviews-track" id="reviews-grid"></div>
+      <button class="rc-nav rc-next" id="rc-next" aria-label="Siguiente" type="button" hidden>›</button>
+    </div>
+    <div class="reviews-dots" id="reviews-dots" role="tablist" hidden></div>
   </div>
 </section>
 
