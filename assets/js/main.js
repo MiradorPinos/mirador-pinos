@@ -29,6 +29,7 @@ const state = {
   setupWhatsApp();
   setupPlaces();
   setupReviewDetail();
+  setupVersionWatcher();
 
   await loadReviews();
 })();
@@ -453,6 +454,40 @@ function setupPlaces() {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
     });
   });
+}
+
+// ── Version watcher ────────────────────────────────────────────────────────
+// On every deploy, the GitHub Action writes the commit SHA to /version.txt.
+// We poll it occasionally and on tab-focus; when it differs from the version
+// the tab loaded with, show a "new version available — refresh" pill so the
+// user can blow past any stale CSS/JS in their browser cache.
+function setupVersionWatcher() {
+  const pill = document.getElementById('version-pill');
+  if (!pill) return;
+  const refreshBtn = document.getElementById('version-refresh');
+  const dismissBtn = document.getElementById('version-dismiss');
+  let initial = null;
+  let dismissed = false;
+
+  refreshBtn?.addEventListener('click', () => location.reload());
+  dismissBtn?.addEventListener('click', () => { pill.hidden = true; dismissed = true; });
+
+  async function check() {
+    if (dismissed) return;
+    try {
+      const r = await fetch('/version.txt', { cache: 'no-store' });
+      if (!r.ok) return;
+      const v = (await r.text()).trim();
+      if (!v) return;
+      if (initial === null) { initial = v; return; }
+      if (v !== initial) pill.hidden = false;
+    } catch (_) { /* offline / network blip — try again later */ }
+  }
+
+  // First check on load, then on focus, then every 5 minutes.
+  check();
+  window.addEventListener('focus', check);
+  setInterval(check, 5 * 60 * 1000);
 }
 
 // ── WhatsApp ───────────────────────────────────────────────────────────────

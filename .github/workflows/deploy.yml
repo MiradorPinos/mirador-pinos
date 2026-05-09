@@ -41,7 +41,9 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build deploy bundle
-        # Copy everything except the directories Pages doesn't need to serve.
+        # Copy everything except the directories Pages doesn't need to serve,
+        # and stamp the build's commit SHA into version.txt for client-side
+        # cache-invalidation prompts.
         run: |
           mkdir -p _site
           rsync -a \
@@ -49,8 +51,11 @@ jobs:
             --exclude='_site' --exclude='node_modules' \
             --exclude='.credentials' --exclude='.DS_Store' \
             ./ _site/
+          echo "$GITHUB_SHA" > _site/version.txt
           echo "--- _site contents ---"
           find _site -maxdepth 2 | sort
+          echo "--- version stamp ---"
+          cat _site/version.txt
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3

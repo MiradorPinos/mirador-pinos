@@ -252,8 +252,7 @@
     <!-- Guest perks -->
     <section class="perks" aria-labelledby="perks-title">
       <header class="perks-header">
-        <p class="eyebrow" data-i18n="perks.eyebrow">Para nuestros huéspedes</p>
-        <h3 id="perks-title" data-i18n="perks.title">Beneficios para huéspedes</h3>
+        <h3 id="perks-title" data-i18n="perks.title">Beneficios para nuestros huéspedes</h3>
       </header>
 
       <ul class="perk-list">
@@ -314,7 +313,7 @@
       <fieldset class="field">
         <legend data-i18n="form.rating">Calificación</legend>
         <div class="rating-input" role="radiogroup">
-          <input type="radio" name="rating" value="5" id="rating-5" required>
+          <input type="radio" name="rating" value="5" id="rating-5" required checked>
           <label for="rating-5" aria-label="5 / 5">★</label>
           <input type="radio" name="rating" value="4" id="rating-4">
           <label for="rating-4" aria-label="4 / 5">★</label>
@@ -446,6 +445,13 @@
     </svg>
     <span class="wa-button-label" data-i18n="wa.button">WhatsApp</span>
   </button>
+</div>
+
+<!-- ───── New-version pill (cache invalidation prompt) ───── -->
+<div class="version-pill" id="version-pill" hidden role="status" aria-live="polite">
+  <span data-i18n="version.new">Nueva versión disponible.</span>
+  <button type="button" class="version-refresh" id="version-refresh" data-i18n="version.refresh">Refrescar</button>
+  <button type="button" class="version-dismiss" id="version-dismiss" aria-label="Cerrar">×</button>
 </div>
 
 <!-- ───── Lightbox ───── -->

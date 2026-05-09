@@ -172,6 +172,31 @@ p { margin: 0 0 1em; }
 @media (max-width: 760px) {
   .primary-nav { display: none; }
 }
+@media (max-width: 540px) {
+  /* Stack the header into two rows: brand on top, actions below — keeps
+     the title from wrapping awkwardly on narrow phones. */
+  .header-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .brand {
+    font-size: 1.1rem;
+    white-space: nowrap;
+  }
+  .header-actions {
+    width: 100%;
+    justify-content: center;
+    gap: 14px;
+  }
+}
+@media (max-width: 360px) {
+  /* On very narrow screens, allow the brand to shrink so it still fits */
+  .brand-mark { display: none; }
+  .brand { font-size: 1.05rem; }
+}
 
 /* ───── Hero ───── */
 .hero {
@@ -1170,6 +1195,61 @@ p { margin: 0 0 1em; }
   margin: 8px 0 0;
   font-size: .72rem;
   color: var(--muted);
+}
+
+/* ───── New-version pill ───── */
+.version-pill {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 95;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--forest-deep);
+  color: var(--cream);
+  padding: 10px 14px 10px 18px;
+  border-radius: 999px;
+  font-size: .9rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,.25);
+  animation: pillSlideUp .35s ease-out;
+  max-width: calc(100vw - 32px);
+}
+.version-pill[hidden] { display: none; }
+@keyframes pillSlideUp {
+  from { transform: translate(-50%, 30px); opacity: 0; }
+  to   { transform: translate(-50%, 0);    opacity: 1; }
+}
+.version-refresh {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: .88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s, transform .15s;
+}
+.version-refresh:hover { background: #b66c43; transform: translateY(-1px); }
+.version-dismiss {
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,.65);
+  font-size: 1.4rem; line-height: 1;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.version-dismiss:hover { background: rgba(255,255,255,.1); color: white; }
+@media (max-width: 480px) {
+  .version-pill { left: 16px; right: 16px; transform: none; max-width: none; justify-content: space-between; }
+  @keyframes pillSlideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
 }
 
 /* ───── Reduced motion ───── */

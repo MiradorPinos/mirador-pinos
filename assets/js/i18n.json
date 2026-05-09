@@ -13,17 +13,17 @@
 
     "hero.tagline": "Relájate, diviértete y descansa",
     "hero.title": "Mirador Los Pinos",
-    "hero.subtitle": "Tres cabañas equipadas en medio del bosque, a 20 minutos de Morelia.",
+    "hero.subtitle": "Cuatro cabañas equipadas en medio del bosque, a 20 minutos de Morelia.",
     "hero.cta": "Reserva por WhatsApp",
     "hero.cta_secondary": "Ver cabañas",
 
     "about.eyebrow": "El lugar",
     "about.title": "Naturaleza, privacidad y comodidad",
-    "about.body": "Disfruta de 3 cabañas totalmente equipadas, diseñadas para que tu estancia sea inolvidable. La cabaña grande, con capacidad para 8 personas, y dos cabañas más pequeñas, ideales para 2 personas cada una, te ofrecen comodidad y confort para hasta 12 invitados.",
+    "about.body": "Disfruta de 4 cabañas totalmente equipadas, diseñadas para que tu estancia sea inolvidable. Una cabaña grande para 8 personas, una mediana para 4, y dos cabañas más pequeñas para 2 personas cada una — comodidad y confort para hasta 16 invitados.",
     "about.body2": "Además, contamos con un amplio quiosco, el lugar perfecto para tus reuniones familiares o con amigos. Imagina convivir rodeado de naturaleza, en un espacio privado, seguro y lleno de tranquilidad — con todas las comodidades que necesitas para celebrar y compartir.",
 
-    "features.cabins": "3 cabañas equipadas",
-    "features.cabins_desc": "1 grande para 8 personas + 2 pequeñas para 2. Con baño completo en cada una.",
+    "features.cabins": "4 cabañas equipadas",
+    "features.cabins_desc": "1 grande para 8 + 1 mediana para 4 + 2 pequeñas para 2. Con baño completo en cada una.",
     "features.kitchen": "Cocina y asadores",
     "features.kitchen_desc": "Estufa, asadores y todo lo necesario para preparar y cocinar tus alimentos.",
     "features.dome": "Domo geodésico con karaoke",
@@ -71,8 +71,7 @@
     "nearby.truchas.body": "Pequeños restaurantes alrededor de Umécuaro sirven truchas, mojarras y antojitos michoacanos a precios accesibles, frente al agua.",
     "nearby.truchas.distance": "A 25 min en coche",
     "nearby.credits": "Fotos de lugares: Wikimedia Commons (CC BY-SA 4.0).",
-    "perks.eyebrow": "Para nuestros huéspedes",
-    "perks.title": "Beneficios para huéspedes",
+    "perks.title": "Beneficios para nuestros huéspedes",
     "perks.directions": "Cómo llegar",
     "perks.howto": "Cómo lo aplico",
     "perks.la-palma.tag": "Descuento",
@@ -120,7 +119,10 @@
     "wa.greeting": "¡Hola! 👋 ¿Tienes alguna duda o quieres reservar? Escríbenos por WhatsApp.",
     "wa.start": "Comenzar conversación",
     "wa.hint": "Se abrirá WhatsApp",
-    "wa.message": "Hola Mirador Los Pinos, me gustaría preguntar por disponibilidad."
+    "wa.message": "Hola Mirador Los Pinos, me gustaría preguntar por disponibilidad.",
+
+    "version.new": "Nueva versión disponible.",
+    "version.refresh": "Refrescar"
   },
   "en": {
     "html.lang": "en",
@@ -136,17 +138,17 @@
 
     "hero.tagline": "Relax, enjoy, and rest",
     "hero.title": "Mirador Los Pinos",
-    "hero.subtitle": "Three fully equipped cabins in the forest, 20 minutes from Morelia.",
+    "hero.subtitle": "Four fully equipped cabins in the forest, 20 minutes from Morelia.",
     "hero.cta": "Book on WhatsApp",
     "hero.cta_secondary": "See the cabins",
 
     "about.eyebrow": "The place",
     "about.title": "Nature, privacy, and comfort",
-    "about.body": "Enjoy 3 fully equipped cabins designed to make your stay unforgettable. The large cabin sleeps 8, and the two smaller cabins each sleep 2 — comfort for up to 12 guests.",
+    "about.body": "Enjoy 4 fully equipped cabins designed to make your stay unforgettable. One large cabin for 8 guests, a medium one for 4, and two smaller cabins for 2 each — comfort for up to 16 guests.",
     "about.body2": "We also have a spacious kiosk — the perfect spot for gatherings with family or friends. Picture spending time surrounded by nature, in a private, safe, and peaceful place, with everything you need to celebrate and share.",
 
-    "features.cabins": "3 equipped cabins",
-    "features.cabins_desc": "1 large cabin for 8 + 2 smaller cabins for 2 each. Full bathroom in every cabin.",
+    "features.cabins": "4 equipped cabins",
+    "features.cabins_desc": "1 large for 8 + 1 medium for 4 + 2 smaller for 2 each. Full bathroom in every cabin.",
     "features.kitchen": "Kitchen & BBQ grills",
     "features.kitchen_desc": "Stove, BBQ grills, and everything you need to cook and serve your meals.",
     "features.dome": "Geodesic dome with karaoke",
@@ -194,8 +196,7 @@
     "nearby.truchas.body": "Small restaurants around Umécuaro serve trout, mojarras, and Michoacán-style antojitos at friendly prices, right on the water's edge.",
     "nearby.truchas.distance": "25 min drive",
     "nearby.credits": "Place photos: Wikimedia Commons (CC BY-SA 4.0).",
-    "perks.eyebrow": "For our guests",
-    "perks.title": "Guest perks",
+    "perks.title": "Perks for our guests",
     "perks.directions": "Get directions",
     "perks.howto": "How to redeem",
     "perks.la-palma.tag": "Discount",
@@ -243,6 +244,9 @@
     "wa.greeting": "Hi there! 👋 Got a question or want to book? Message us on WhatsApp.",
     "wa.start": "Start chat",
     "wa.hint": "Opens WhatsApp",
-    "wa.message": "Hi Mirador Los Pinos, I'd like to ask about availability."
+    "wa.message": "Hi Mirador Los Pinos, I'd like to ask about availability.",
+
+    "version.new": "New version available.",
+    "version.refresh": "Refresh"
   }
 }
