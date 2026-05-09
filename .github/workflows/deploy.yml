@@ -17,6 +17,13 @@ on:
       - '.github/**'
       - 'README.md'
       - '.gitignore'
+  workflow_run:
+    # Re-run the deploy after the reviews-sync commits a new reviews.json
+    # (its commit alone won't trigger `push` events because of the
+    #  GITHUB_TOKEN no-recursion rule).
+    workflows: ['Sync reviews from issues']
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
