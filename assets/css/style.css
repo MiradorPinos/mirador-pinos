@@ -317,29 +317,10 @@ p { margin: 0 0 1em; }
 
 /* ───── Places of interest ───── */
 .section-nearby { background: var(--cream); }
-.plaza-figure {
-  margin: 32px 0 8px;
-  padding: 0;
-}
-.plaza-figure img {
-  width: 100%;
-  height: clamp(220px, 38vw, 420px);
-  object-fit: cover;
-  border-radius: var(--radius-lg);
-  display: block;
-  box-shadow: var(--shadow);
-}
-.plaza-figure figcaption {
-  margin-top: 10px;
-  text-align: center;
-  font-size: .88rem;
-  color: var(--muted);
-  font-style: italic;
-}
 .places-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 240px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 280px;
   gap: 18px;
   margin-top: 48px;
   margin-bottom: 24px;
@@ -440,30 +421,11 @@ p { margin: 0 0 1em; }
   background: var(--gold);
 }
 
-/* Featured (large) card */
-.place-featured {
-  grid-column: span 2;
-  grid-row: span 2;
-}
-.place-featured .place-content { padding: 30px; }
-.place-featured h3 { font-size: 2.1rem; }
-.place-featured .place-content > p { font-size: 1rem; }
-/* On the featured card, body text is always visible */
-.place-featured .place-content > p {
-  max-height: 200px;
-  opacity: 1;
-  margin: 8px 0 14px;
-}
-
 @media (max-width: 980px) {
-  .places-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 220px; }
-  .place-featured { grid-column: span 2; grid-row: span 2; }
+  .places-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 240px; }
 }
 @media (max-width: 560px) {
   .places-grid { grid-template-columns: 1fr; grid-auto-rows: 260px; }
-  .place-featured { grid-column: 1; grid-row: span 1; }
-  .place-featured .place-content { padding: 22px; }
-  .place-featured h3 { font-size: 1.5rem; }
   /* on mobile (no hover), always show body */
   .place-content > p { max-height: 200px; opacity: 1; margin: 6px 0 12px; }
 }
