@@ -106,18 +106,34 @@ def render(template_html: str, lang: str, i18n: dict) -> str:
     return str(soup)
 
 
+import re as _re
+
 _LOCAL_PREFIXES = ("assets/", "images/", "data/")
 _PATH_ATTRS = ("href", "src", "data-img")
+# Matches url(...) in style attributes pointing at our own asset folders.
+# Captures the inner path. Handles ', ", or no quote.
+_URL_IN_STYLE = _re.compile(
+    r"""url\(\s*(['"]?)((?:assets|images|data)/[^'")]+)\1\s*\)"""
+)
 
 
 def _absolutize_paths(soup: BeautifulSoup) -> None:
-    """Rewrite href / src / data-img attributes that point at our own
+    """Rewrite href / src / data-img attributes AND inline-style
+    background-image url(...) references that point at our own
     relative-path assets to root-absolute paths."""
     for el in soup.find_all(True):
+        # Attribute-based references
         for attr in _PATH_ATTRS:
             v = el.get(attr)
             if isinstance(v, str) and v.startswith(_LOCAL_PREFIXES):
                 el[attr] = "/" + v
+        # url(...) inside inline style="..."
+        style = el.get("style")
+        if isinstance(style, str) and "url(" in style:
+            el["style"] = _URL_IN_STYLE.sub(
+                lambda m: f"url({m.group(1)}/{m.group(2)}{m.group(1)})",
+                style,
+            )
 
 
 def main() -> int:
