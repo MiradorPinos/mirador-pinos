@@ -17,7 +17,7 @@ const state = {
 
 // ── Boot ───────────────────────────────────────────────────────────────────
 (async function init() {
-  state.i18n = await fetch('assets/js/i18n.json', { cache: 'no-cache' }).then(r => r.json());
+  state.i18n = await fetch('/assets/js/i18n.json', { cache: 'no-cache' }).then(r => r.json());
   state.lang = pickInitialLang();
 
   applyTranslations();
@@ -108,7 +108,7 @@ function setupLangToggle() {
 // ── Reviews ────────────────────────────────────────────────────────────────
 async function loadReviews() {
   try {
-    const data = await fetch('data/reviews.json', { cache: 'no-cache' }).then(r => r.json());
+    const data = await fetch('/data/reviews.json', { cache: 'no-cache' }).then(r => r.json());
     state.reviews = (data.reviews || []).slice().sort((a, b) =>
       (b.date || '').localeCompare(a.date || '')
     );

@@ -53,6 +53,11 @@ def render(template_html: str, lang: str, i18n: dict) -> str:
     soup = BeautifulSoup(template_html, "html.parser")
     year = str(datetime.date.today().year)
 
+    # 0. Rewrite relative asset paths to root-absolute so they work both at
+    #    / and /en/ (a plain "assets/..." href under /en/index.html resolves
+    #    to /en/assets/... which doesn't exist).
+    _absolutize_paths(soup)
+
     # 1. <html lang="...">
     if soup.html is not None:
         soup.html["lang"] = cfg["html_lang"]
@@ -99,6 +104,20 @@ def render(template_html: str, lang: str, i18n: dict) -> str:
             pass
 
     return str(soup)
+
+
+_LOCAL_PREFIXES = ("assets/", "images/", "data/")
+_PATH_ATTRS = ("href", "src", "data-img")
+
+
+def _absolutize_paths(soup: BeautifulSoup) -> None:
+    """Rewrite href / src / data-img attributes that point at our own
+    relative-path assets to root-absolute paths."""
+    for el in soup.find_all(True):
+        for attr in _PATH_ATTRS:
+            v = el.get(attr)
+            if isinstance(v, str) and v.startswith(_LOCAL_PREFIXES):
+                el[attr] = "/" + v
 
 
 def main() -> int:
