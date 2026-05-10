@@ -35,10 +35,14 @@ const state = {
 })();
 
 // ── i18n ───────────────────────────────────────────────────────────────────
+// Lang follows the URL on production:
+//   /         → es  (canonical)
+//   /en/      → en
+// In local dev (no /en/index.html exists) the toggle falls back to an
+// in-page text swap so the page is still previewable.
 function pickInitialLang() {
-  const saved = localStorage.getItem('mp.lang');
-  if (saved && state.i18n[saved]) return saved;
-  return 'es'; // default Spanish
+  if (/^\/en(\/|$)/.test(location.pathname)) return 'en';
+  return 'es';
 }
 
 function t(key) {
@@ -81,10 +85,23 @@ function applyTranslations() {
 function setupLangToggle() {
   const btn = document.getElementById('lang-toggle');
   if (!btn) return;
-  btn.addEventListener('click', () => {
-    state.lang = state.lang === 'es' ? 'en' : 'es';
-    localStorage.setItem('mp.lang', state.lang);
-    applyTranslations();
+  btn.addEventListener('click', async () => {
+    const target = state.lang === 'es' ? '/en/' : '/';
+    // On production both pages exist (built by scripts/build.py). In local
+    // dev the build hasn't run, so HEAD-check first and fall back to an
+    // in-page swap if /en/ 404s.
+    let canNavigate = false;
+    try {
+      const r = await fetch(target, { method: 'HEAD', cache: 'no-store' });
+      canNavigate = r.ok && (r.headers.get('content-type') || '').includes('html');
+    } catch { /* offline / blocked */ }
+
+    if (canNavigate) {
+      location.assign(target);
+    } else {
+      state.lang = state.lang === 'es' ? 'en' : 'es';
+      applyTranslations();
+    }
   });
 }
 

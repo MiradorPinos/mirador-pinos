@@ -40,17 +40,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install build deps
+        run: pip install --quiet beautifulsoup4
+
       - name: Build deploy bundle
-        # Copy everything except the directories Pages doesn't need to serve,
-        # and stamp the build's commit SHA into version.txt for client-side
-        # cache-invalidation prompts.
+        # 1. rsync everything (assets, images, data, sitemap, robots, etc.)
+        # 2. Render per-language pages: _site/index.html (es) + _site/en/index.html (en)
+        # 3. Stamp commit SHA into version.txt for the client-side refresh pill
         run: |
           mkdir -p _site
           rsync -a \
-            --exclude='.git' --exclude='.github' --exclude='worker' \
+            --exclude='.git' --exclude='.github' --exclude='worker' --exclude='scripts' \
             --exclude='_site' --exclude='node_modules' \
             --exclude='.credentials' --exclude='.DS_Store' \
             ./ _site/
+          python3 scripts/build.py _site
           echo "$GITHUB_SHA" > _site/version.txt
           echo "--- _site contents ---"
           find _site -maxdepth 2 | sort
