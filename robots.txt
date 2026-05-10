@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /version.txt
+
+Sitemap: https://miradorpinos.com/sitemap.xml

@@ -126,6 +126,45 @@ function renderReviews() {
   }
 
   setupReviewsCarousel();
+  injectReviewSchema();
+}
+
+// Add aggregateRating + review[] to the LodgingBusiness JSON-LD already on the
+// page, so search engines see them alongside the visible content. Replacing
+// the existing block (rather than adding a separate one) keeps a single
+// canonical schema for the page.
+function injectReviewSchema() {
+  const el = document.getElementById('ld-business');
+  if (!el || !state.reviews.length) return;
+  let data;
+  try { data = JSON.parse(el.textContent); } catch { return; }
+
+  const total = state.reviews.length;
+  const avg = state.reviews.reduce((s, r) => s + (r.rating || 0), 0) / total;
+
+  data.aggregateRating = {
+    '@type': 'AggregateRating',
+    'ratingValue': Number(avg.toFixed(1)),
+    'bestRating': 5,
+    'worstRating': 1,
+    'reviewCount': total
+  };
+
+  data.review = state.reviews.map(r => ({
+    '@type': 'Review',
+    'author': { '@type': 'Person', 'name': r.author || 'Anónimo' },
+    'datePublished': r.date,
+    'name': r.title || undefined,
+    'reviewBody': (r.body || '').trim() || undefined,
+    'reviewRating': {
+      '@type': 'Rating',
+      'ratingValue': r.rating,
+      'bestRating': 5,
+      'worstRating': 1
+    }
+  }));
+
+  el.textContent = JSON.stringify(data, null, 2);
 }
 
 // ── Reviews carousel (horizontal scroll, snap, nav, dots) ──────────────────

@@ -7,11 +7,86 @@
   <meta name="description" data-i18n-attr="content" data-i18n="site.description" content="" />
   <meta name="theme-color" content="#2d4a3a" />
 
+  <link rel="canonical" href="https://miradorpinos.com/" />
+  <link rel="alternate" hreflang="es-mx" href="https://miradorpinos.com/" />
+  <link rel="alternate" hreflang="en"    href="https://miradorpinos.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://miradorpinos.com/" />
+
   <!-- Open Graph -->
   <meta property="og:title" data-i18n-attr="content" data-i18n="site.title" content="" />
   <meta property="og:description" data-i18n-attr="content" data-i18n="site.description" content="" />
-  <meta property="og:image" content="images/hero.jpg" />
+  <meta property="og:image" content="https://miradorpinos.com/images/hero.jpg" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="768" />
+  <meta property="og:url" content="https://miradorpinos.com/" />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Mirador Los Pinos" />
+  <meta property="og:locale" content="es_MX" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" data-i18n-attr="content" data-i18n="site.title" content="" />
+  <meta name="twitter:description" data-i18n-attr="content" data-i18n="site.description" content="" />
+  <meta name="twitter:image" content="https://miradorpinos.com/images/hero.jpg" />
+
+  <!-- Geo -->
+  <meta name="geo.region" content="MX-MIC" />
+  <meta name="geo.placename" content="Santiago Undameo, Morelia, Michoacán" />
+  <meta name="geo.position" content="19.5883;-101.2739" />
+  <meta name="ICBM" content="19.5883, -101.2739" />
+
+  <!-- Structured data: LodgingBusiness. AggregateRating + Review entries
+       are added dynamically by main.js once reviews.json has loaded so
+       they always match the visible reviews. -->
+  <script type="application/ld+json" id="ld-business">
+  {
+    "@context": "https://schema.org",
+    "@type": ["LodgingBusiness", "Resort"],
+    "@id": "https://miradorpinos.com/#business",
+    "name": "Mirador Los Pinos",
+    "description": "Cuatro cabañas equipadas rodeadas de naturaleza, a 20 minutos de Morelia.",
+    "url": "https://miradorpinos.com/",
+    "image": [
+      "https://miradorpinos.com/images/hero.jpg",
+      "https://miradorpinos.com/images/cabin-01.jpg",
+      "https://miradorpinos.com/images/cabin-04.jpg",
+      "https://miradorpinos.com/images/cabin-05.jpg"
+    ],
+    "telephone": "+524431233903",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Santiago Undameo",
+      "addressRegion": "Michoacán",
+      "addressCountry": "MX"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 19.5883,
+      "longitude": -101.2739
+    },
+    "priceRange": "$$",
+    "amenityFeature": [
+      { "@type": "LocationFeatureSpecification", "name": "WiFi", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Estacionamiento", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Cocina equipada", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Asadores", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Fogata", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Quiosco", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Domo geodésico con karaoke", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Área de juegos infantiles", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Bicicletas", "value": true }
+    ],
+    "containsPlace": {
+      "@type": "HotelRoom",
+      "name": "Cabañas",
+      "occupancy": { "@type": "QuantitativeValue", "minValue": 2, "maxValue": 16 }
+    },
+    "sameAs": [
+      "https://wa.me/524431233903"
+    ]
+  }
+  </script>
 
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png" />
@@ -155,15 +230,15 @@
   </div>
   <div class="container">
     <div class="gallery" id="gallery">
-      <button class="g-item g-item-tall" data-img="images/cabin-01.jpg"><img src="images/cabin-01.jpg" alt="Cabaña" loading="lazy"></button>
-      <button class="g-item" data-img="images/cabin-02.jpg"><img src="images/cabin-02.jpg" alt="Cabaña" loading="lazy"></button>
-      <button class="g-item" data-img="images/cabin-03.jpg"><img src="images/cabin-03.jpg" alt="Cabaña" loading="lazy"></button>
-      <button class="g-item" data-img="images/cabin-04.jpg"><img src="images/cabin-04.jpg" alt="Cabaña" loading="lazy"></button>
-      <button class="g-item g-item-wide" data-img="images/cabin-05.jpg"><img src="images/cabin-05.jpg" alt="Cabaña" loading="lazy"></button>
-      <button class="g-item" data-img="images/cabin-06.jpg"><img src="images/cabin-06.jpg" alt="Cabaña" loading="lazy"></button>
-      <button class="g-item" data-img="images/cabin-07.jpg"><img src="images/cabin-07.jpg" alt="Cabaña" loading="lazy"></button>
-      <button class="g-item" data-img="images/cabin-08.jpg"><img src="images/cabin-08.jpg" alt="Cabaña" loading="lazy"></button>
-      <button class="g-item" data-img="images/cabin-09.jpg"><img src="images/cabin-09.jpg" alt="Cabaña" loading="lazy"></button>
+      <button class="g-item g-item-tall" data-img="images/cabin-01.jpg"><img src="images/cabin-01.jpg" alt="Cabaña principal del Mirador Los Pinos vista desde el frente" loading="lazy"></button>
+      <button class="g-item" data-img="images/cabin-02.jpg"><img src="images/cabin-02.jpg" alt="Cabaña entre los pinos en Santiago Undameo" loading="lazy"></button>
+      <button class="g-item" data-img="images/cabin-03.jpg"><img src="images/cabin-03.jpg" alt="Vista exterior de cabaña pequeña con jardín" loading="lazy"></button>
+      <button class="g-item" data-img="images/cabin-04.jpg"><img src="images/cabin-04.jpg" alt="Cabañas y áreas comunes del Mirador" loading="lazy"></button>
+      <button class="g-item g-item-wide" data-img="images/cabin-05.jpg"><img src="images/cabin-05.jpg" alt="Cabaña de madera con porche y mobiliario exterior" loading="lazy"></button>
+      <button class="g-item" data-img="images/cabin-06.jpg"><img src="images/cabin-06.jpg" alt="Quiosco y zona de reuniones al aire libre" loading="lazy"></button>
+      <button class="g-item" data-img="images/cabin-07.jpg"><img src="images/cabin-07.jpg" alt="Porche de la cabaña con vista al campo" loading="lazy"></button>
+      <button class="g-item" data-img="images/cabin-08.jpg"><img src="images/cabin-08.jpg" alt="Detalle del interior de una cabaña equipada" loading="lazy"></button>
+      <button class="g-item" data-img="images/cabin-09.jpg"><img src="images/cabin-09.jpg" alt="Área de descanso del Mirador Los Pinos al amanecer" loading="lazy"></button>
     </div>
   </div>
 </section>
