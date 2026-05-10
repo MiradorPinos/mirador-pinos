@@ -246,6 +246,26 @@ function setupReviewsCarousel() {
   update();
 }
 
+// Resolve which version of a review's title+body to render based on the UI
+// language and the review's original language. Returns { title, body,
+// isTranslated, originalLang }.
+function pickReviewText(r) {
+  const original = { title: r.title || '', body: (r.body || '').trim() };
+  const reviewLang = r.lang || 'es';
+  if (state.lang === reviewLang) return { ...original, isTranslated: false, originalLang: reviewLang };
+  const tr = r.translations && r.translations[state.lang];
+  if (tr && (tr.title || tr.body)) {
+    return {
+      title: tr.title || original.title,
+      body: (tr.body || '').trim() || original.body,
+      isTranslated: true,
+      originalLang: reviewLang,
+    };
+  }
+  // No translation cached — fall back to the original gracefully.
+  return { ...original, isTranslated: false, originalLang: reviewLang };
+}
+
 function reviewCard(r) {
   const card = document.createElement('article');
   card.className = 'review-card';
@@ -254,24 +274,29 @@ function reviewCard(r) {
   card.setAttribute('aria-label', `${t('reviews.read_full')} — ${r.author || '—'}`);
 
   const stars = '★'.repeat(r.rating || 0) + '☆'.repeat(5 - (r.rating || 0));
-  const body = (r.body || '').trim();
+  const picked = pickReviewText(r);
   const dateStr = formatDate(r.date);
   card.innerHTML = `
     <div class="review-stars" aria-label="${r.rating} / 5">${stars}</div>
+    <p class="review-translated-tag" hidden></p>
     ${r.title ? `<h3 class="review-title"></h3>` : ''}
-    <p class="review-body ${body ? '' : 'empty'}"></p>
+    <p class="review-body ${picked.body ? '' : 'empty'}"></p>
     <p class="review-readmore"></p>
     <div class="review-meta">
       <span class="review-author"></span>
       <span class="review-date"></span>
     </div>
   `;
-  // textContent everywhere to prevent any HTML in user-submitted content from being interpreted
-  if (r.title) card.querySelector('.review-title').textContent = r.title;
-  card.querySelector('.review-body').textContent = body || t('reviews.no_body');
+  if (r.title) card.querySelector('.review-title').textContent = picked.title;
+  card.querySelector('.review-body').textContent = picked.body || t('reviews.no_body');
   card.querySelector('.review-readmore').textContent = t('reviews.read_full') + ' →';
   card.querySelector('.review-author').textContent = r.author || '—';
   card.querySelector('.review-date').textContent = dateStr;
+  if (picked.isTranslated) {
+    const tag = card.querySelector('.review-translated-tag');
+    tag.textContent = t('reviews.translated');
+    tag.hidden = false;
+  }
 
   const open = () => openReviewDetail(r);
   card.addEventListener('click', open);
@@ -309,15 +334,36 @@ function openReviewDetail(r) {
   const rd = document.getElementById('review-detail');
   if (!rd) return;
 
-  // Populate
+  // Populate (translated version by default if available)
   const stars = '★'.repeat(r.rating || 0) + '☆'.repeat(5 - (r.rating || 0));
   document.getElementById('rd-stars').textContent  = stars;
-  document.getElementById('rd-title').textContent  = r.title || '';
-  const bodyEl = document.getElementById('rd-body');
-  bodyEl.textContent = (r.body || '').trim() || t('reviews.no_body');
-  bodyEl.classList.toggle('empty', !(r.body || '').trim());
   document.getElementById('rd-author').textContent = r.author || '—';
   document.getElementById('rd-date').textContent   = formatDate(r.date);
+
+  const picked = pickReviewText(r);
+  const original = { title: r.title || '', body: (r.body || '').trim() };
+
+  const setView = (showOriginal) => {
+    const which = showOriginal ? original : picked;
+    document.getElementById('rd-title').textContent = which.title;
+    const bodyEl = document.getElementById('rd-body');
+    bodyEl.textContent = which.body || t('reviews.no_body');
+    bodyEl.classList.toggle('empty', !which.body);
+
+    const tag    = document.getElementById('rd-translated-tag');
+    const toggle = document.getElementById('rd-translation-toggle');
+    if (picked.isTranslated) {
+      tag.hidden    = showOriginal;
+      toggle.hidden = false;
+      toggle.textContent = showOriginal ? t('reviews.show_translation') : t('reviews.show_original');
+      toggle.onclick = () => setView(!showOriginal);
+    } else {
+      tag.hidden = true;
+      toggle.hidden = true;
+    }
+  };
+  document.getElementById('rd-translated-tag').textContent = t('reviews.translated');
+  setView(false);
 
   // Remember focus origin
   _rdOpenerEl = document.activeElement;

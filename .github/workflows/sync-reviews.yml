@@ -38,7 +38,20 @@ jobs:
         with:
           script: |
             const fs = require('fs');
+            const crypto = require('crypto');
             const path = 'data/reviews.json';
+            const SUPPORTED_LANGS = ['es', 'en'];
+
+            // Load existing reviews.json so we can reuse cached translations
+            // (key = issue number + content hash). MyMemory's free quota is
+            // 5000 chars/day per IP — caching makes that effectively unlimited
+            // for our scale.
+            const prevReviews = (() => {
+              try {
+                const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+                return Object.fromEntries((data.reviews || []).map(r => [r.source_issue, r]));
+              } catch { return {}; }
+            })();
 
             // Pull every OPEN issue with the `review` label.
             const issues = await github.paginate(github.rest.issues.listForRepo, {
@@ -75,14 +88,40 @@ jobs:
                 .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
                 .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
+              const lang = SUPPORTED_LANGS.includes(parsed.lang) ? parsed.lang : 'es';
+              const title = parsed.title || '';
+              const body = parsed.body || '';
+
+              // Reuse previous translations when title+body haven't changed.
+              const contentHash = sha1(lang + '|' + title + '|' + body);
+              const prev = prevReviews[issue.number];
+              const cached = (prev && prev._content_hash === contentHash)
+                ? (prev.translations || {})
+                : {};
+
+              const translations = {};
+              for (const target of SUPPORTED_LANGS) {
+                if (target === lang) continue; // no need to translate to self
+                if (cached[target]) {
+                  translations[target] = cached[target];
+                  continue;
+                }
+                core.info(`#${issue.number}: translating ${lang} → ${target}`);
+                const t = await translatePair(title, body, lang, target);
+                if (t) translations[target] = t;
+              }
+
               reviews.push({
                 id: `${date}-${slug || 'guest'}-i${issue.number}`,
                 author: parsed.author,
                 date,
                 rating: Number(parsed.rating),
-                title: parsed.title || '',
-                body: parsed.body || '',
+                title,
+                body,
+                lang,
+                ...(Object.keys(translations).length ? { translations } : {}),
                 source_issue: issue.number,
+                _content_hash: contentHash,
               });
             }
 
@@ -128,6 +167,64 @@ jobs:
                   return;
                 }
               }
+            }
+
+            // ── translation via MyMemory (free, no auth) ────────────────
+            // Free quota: 5000 chars/day per IP, 50000 with the `de` email
+            // hint. Cached by content hash so we don't re-translate on
+            // every sync run.
+            async function translatePair(title, body, from, to) {
+              const tTitle = title ? await mymemory(title, from, to) : '';
+              if (title && tTitle === null) return null;
+              const tBody  = body  ? await mymemory(body,  from, to) : '';
+              if (body && tBody === null) return null;
+              return { title: tTitle || '', body: tBody || '' };
+            }
+            async function mymemory(text, from, to) {
+              // MyMemory rejects requests over ~500 chars; split on sentence
+              // boundaries to stay under the limit.
+              const chunks = chunkText(text.trim(), 480);
+              const parts = [];
+              for (const c of chunks) {
+                const url = `https://api.mymemory.translated.net/get?` +
+                  `q=${encodeURIComponent(c)}&langpair=${from}|${to}&de=admin@miradorpinos.com`;
+                try {
+                  const r = await fetch(url, { headers: { 'User-Agent': 'mirador-pinos-sync/1.0' } });
+                  if (!r.ok) { core.warning(`MyMemory HTTP ${r.status}; skipping`); return null; }
+                  const j = await r.json();
+                  const status = String(j.responseStatus);
+                  if (status !== '200') {
+                    core.warning(`MyMemory status=${status} msg=${j.responseDetails || ''}; skipping`);
+                    return null;
+                  }
+                  parts.push((j.responseData?.translatedText || '').trim());
+                } catch (e) {
+                  core.warning(`Translation request failed: ${e.message}; skipping`);
+                  return null;
+                }
+              }
+              return parts.join(' ');
+            }
+            function chunkText(text, max) {
+              if (text.length <= max) return [text];
+              const sentences = text.split(/(?<=[.!?])\s+/);
+              const out = [];
+              let cur = '';
+              for (const s of sentences) {
+                if ((cur + ' ' + s).trim().length > max) {
+                  if (cur) out.push(cur);
+                  cur = s;
+                } else {
+                  cur = cur ? cur + ' ' + s : s;
+                }
+              }
+              if (cur) out.push(cur);
+              return out.flatMap(c => c.length > max
+                ? c.match(new RegExp(`.{1,${max}}`, 'g')) || [c]
+                : [c]);
+            }
+            function sha1(s) {
+              return crypto.createHash('sha1').update(s).digest('hex').slice(0, 12);
             }
 
             // ── tiny YAML parser, just for our known shape ──────────────

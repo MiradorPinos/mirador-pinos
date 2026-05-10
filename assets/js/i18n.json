@@ -89,6 +89,9 @@
     "reviews.empty": "Sé el primero en dejarnos una reseña.",
     "reviews.no_body": "(sin comentario adicional)",
     "reviews.read_full": "Leer reseña completa",
+    "reviews.translated": "Traducción automática",
+    "reviews.show_original": "Ver original",
+    "reviews.show_translation": "Ver traducción",
 
     "form.title": "Comparte tu experiencia",
     "form.subtitle": "Tu reseña aparecerá tras una breve revisión.",
@@ -218,6 +221,9 @@
     "reviews.empty": "Be the first to leave us a review.",
     "reviews.no_body": "(no additional comment)",
     "reviews.read_full": "Read full review",
+    "reviews.translated": "Auto-translated",
+    "reviews.show_original": "Show original",
+    "reviews.show_translation": "Show translation",
 
     "form.title": "Share your experience",
     "form.subtitle": "Your review will appear after a brief review.",
