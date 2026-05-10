@@ -7,7 +7,15 @@
       "rating": 5,
       "title": "Excelente y hermoso lugar!",
       "body": "Es un lugar muy bonito, con buen gusto, todos los detalles están muy bien cuidados, muy seguro, equipado al 100% cerca de Morelia, en un ambiente muy campestre y tranquilo además de ser muy seguro, Gustavo el anfitrión es muy amable y está siempre al pendiente así como su asistente Germán, en todo momento atentos a tus necesidades, cuenta con todas las comodidades que brinda la tecnología y con la tranquilidad y entorno natural y campestre! Ampliamente recomendable, muy buena relación calidad-precio! Pasamos unos días muy agradables en familia, seguramente pronto regresamos! Saludos! Muchas gracias 🙏🏻☺️👊",
-      "source_issue": 2
+      "lang": "es",
+      "translations": {
+        "en": {
+          "title": "Excellent and beautiful place!",
+          "body": "It is a very nice place, with good taste, all the details are very well taken care of, very safe, 100% equipped near Morelia, in a very rural and quiet environment as well as being very safe, Gustavo the host is very friendly and is always on the lookout as well as his assistant Germán, at all times attentive to your needs, has all the comforts provided by technology and with the tranquility and natural and rural environment! Highly recommended, very good value for money! We spent a few very pleasant days with the family, we will surely be back soon! Greetings! Thank you very much 🙏🏻☺️👊"
+        }
+      },
+      "source_issue": 2,
+      "_content_hash": "9bd201bc4859"
     },
     {
       "id": "2026-02-15-maritza-soto-i3",
@@ -16,7 +24,15 @@
       "rating": 5,
       "title": "Tranquilidad absoluta",
       "body": "Un lugar muy tranquilo para disfrutar en familia, el lugar se encuentra muy limpio y equipada para poder traer tus alimentos y prepararlos, además cuenta con fogata para pasar momentos únicos con tu pareja o familia, 10 de 10 :)",
-      "source_issue": 3
+      "lang": "es",
+      "translations": {
+        "en": {
+          "title": "Total silence.",
+          "body": "A very quiet place to enjoy with the family, the place is very clean and equipped to be able to bring your food and prepare it, it also has a campfire to spend unique moments with your partner or family, 10 out of 10 :)"
+        }
+      },
+      "source_issue": 3,
+      "_content_hash": "04606fef91eb"
     },
     {
       "id": "2026-01-10-anonimo-i4",
@@ -25,7 +41,15 @@
       "rating": 5,
       "title": "Excelente lugar.",
       "body": "",
-      "source_issue": 4
+      "lang": "es",
+      "translations": {
+        "en": {
+          "title": "Excelente lugar.",
+          "body": ""
+        }
+      },
+      "source_issue": 4,
+      "_content_hash": "8a4353278cc8"
     }
   ]
 }
