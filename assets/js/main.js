@@ -87,9 +87,19 @@ function setupLangToggle() {
   if (!btn) return;
   btn.addEventListener('click', async () => {
     const target = state.lang === 'es' ? '/en/' : '/';
-    // On production both pages exist (built by scripts/build.py). In local
-    // dev the build hasn't run, so HEAD-check first and fall back to an
-    // in-page swap if /en/ 404s.
+
+    // In production both / and /en/ are built and served. Going from one
+    // to the other is a plain navigation — no HEAD pre-flight needed.
+    //
+    // Local dev (python http.server) only has /index.html. We detect that
+    // by HEAD-checking ONLY when running on a non-production host, and
+    // fall back to in-page text swap so the local preview still works.
+    const isProd = /(^|\.)miradorpinos\.com$/.test(location.hostname);
+    if (isProd) {
+      window.location.href = target;
+      return;
+    }
+
     let canNavigate = false;
     try {
       const r = await fetch(target, { method: 'HEAD', cache: 'no-store' });
@@ -97,7 +107,7 @@ function setupLangToggle() {
     } catch { /* offline / blocked */ }
 
     if (canNavigate) {
-      location.assign(target);
+      window.location.href = target;
     } else {
       state.lang = state.lang === 'es' ? 'en' : 'es';
       applyTranslations();
