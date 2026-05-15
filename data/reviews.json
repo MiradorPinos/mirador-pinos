@@ -1,6 +1,23 @@
 {
   "reviews": [
     {
+      "id": "2026-04-15-vany-i12",
+      "author": "VaNy",
+      "date": "2026-04-15",
+      "rating": 5,
+      "title": "",
+      "body": "Muy agradable , las instalaciones muy limpias , y tranquilas .\nExcelente para despejarse de la ciudad.\nGustavo siempre al pendiente.",
+      "lang": "es",
+      "translations": {
+        "en": {
+          "title": "",
+          "body": "Very nice , the facilities very clean , and quiet .\nGreat for getting clear of the city.\nGustavo is always on the lookout."
+        }
+      },
+      "source_issue": 12,
+      "_content_hash": "62e266f84814"
+    },
+    {
       "id": "2026-04-12-carlos-contreras-i2",
       "author": "Carlos Contreras",
       "date": "2026-04-12",
@@ -16,6 +33,23 @@
       },
       "source_issue": 2,
       "_content_hash": "9bd201bc4859"
+    },
+    {
+      "id": "2026-03-15-erick-i11",
+      "author": "Erick",
+      "date": "2026-03-15",
+      "rating": 5,
+      "title": "",
+      "body": "Un lugar exclusivamente para poder relajarte y disfrutar de un buen momento con tus conocidos y poder separarte del ruido para poder conectar con la naturaleza",
+      "lang": "es",
+      "translations": {
+        "en": {
+          "title": "",
+          "body": "A place exclusively to relax and enjoy a good time with your acquaintances and to be able to separate yourself from the noise to be able to connect with nature"
+        }
+      },
+      "source_issue": 11,
+      "_content_hash": "89f37c944424"
     },
     {
       "id": "2026-02-15-maritza-soto-i3",
@@ -50,6 +84,40 @@
       },
       "source_issue": 4,
       "_content_hash": "8a4353278cc8"
+    },
+    {
+      "id": "2025-11-20-america-i10",
+      "author": "America",
+      "date": "2025-11-20",
+      "rating": 5,
+      "title": "",
+      "body": "Muy buen anfitrión, todo muy limpio. La cabaña súper bonita\nNos encantó todo\nMuchas gracias",
+      "lang": "es",
+      "translations": {
+        "en": {
+          "title": "",
+          "body": "Very good host, everything is very clean. The super pretty cabin\nWe loved everything\nThank you very much"
+        }
+      },
+      "source_issue": 10,
+      "_content_hash": "5924bf19cc38"
+    },
+    {
+      "id": "2025-11-15-dietmar-i9",
+      "author": "Dietmar",
+      "date": "2025-11-15",
+      "rating": 5,
+      "title": "",
+      "body": "A pesar de muchos contratiempos en el viaje desde antes a despues, Gustavo fue muy amable, resolutivo y disponible para ayudarme en todo. La verdad que el lugar es muy bonito, vale totalmente la pena. Aunque el camino esta un poco deteriorado por baches, topes y terraceria. Pero no hubo ninguna dificultad para llegar al lugar. Muy bien cuidado, muy amable tambien el encargado y disponible todo el tiempo. Definitivamente un lugar para poder descansar. Incluso ni ganas de salir para poder disfrutar del lugar un par de horas. Lo recomiendo al 100%",
+      "lang": "es",
+      "translations": {
+        "en": {
+          "title": "",
+          "body": "Despite many setbacks on the trip from before to after, Gustavo was very kind, decisive and available to help me in everything. The truth is that the place is very beautiful, it is totally worth it. Although the road is a little deteriorated by potholes, bumps and dirt. But there was no difficulty in getting to the place. Very well taken care of, very friendly also the manager and available all the time. Definitely a place to rest. You don't even feel like going out to enjoy the place for a couple of hours. I recommend it 100%"
+        }
+      },
+      "source_issue": 9,
+      "_content_hash": "3c1aa14f6fd8"
     }
   ]
 }
