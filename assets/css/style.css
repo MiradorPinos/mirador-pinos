@@ -31,6 +31,10 @@
 /* ───── Reset ───── */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+/* Offset in-page anchor jumps so section tops clear the sticky header. */
+:where(#about, #amenities, #gallery, #nearby, #reviews, #location, #contact) {
+  scroll-margin-top: 84px;
+}
 body {
   margin: 0;
   font-family: var(--font-sans);
@@ -169,8 +173,57 @@ p { margin: 0 0 1em; }
 .lang-toggle [data-lang-inactive] { color: var(--muted); }
 .lang-toggle .sep { color: var(--line); }
 
+/* ───── Mobile nav toggle (hamburger) ───── */
+.nav-toggle {
+  display: none;            /* shown only on narrow screens */
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--ink);
+  cursor: pointer;
+}
+.nav-toggle:hover { border-color: var(--forest); color: var(--forest); }
+.nav-toggle-bars { position: relative; width: 18px; height: 14px; }
+.nav-toggle-bars span {
+  position: absolute; left: 0; right: 0; height: 2px; border-radius: 2px;
+  background: currentColor; transition: transform .25s, opacity .2s, top .25s;
+}
+.nav-toggle-bars span:nth-child(1) { top: 0; }
+.nav-toggle-bars span:nth-child(2) { top: 6px; }
+.nav-toggle-bars span:nth-child(3) { top: 12px; }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bars span:nth-child(1) { top: 6px; transform: rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bars span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bars span:nth-child(3) { top: 6px; transform: rotate(-45deg); }
+
 @media (max-width: 760px) {
-  .primary-nav { display: none; }
+  .nav-toggle { display: inline-flex; }
+  /* The nav becomes a dropdown panel anchored to the sticky header. */
+  .primary-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--cream);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 24px rgba(20, 40, 30, .12);
+    padding: 8px 0;
+  }
+  .primary-nav.open { display: flex; }
+  .primary-nav a {
+    padding: 13px 24px;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(230, 223, 209, .5);
+  }
+  .primary-nav a:last-child { border-bottom: 0; }
+  .primary-nav a::after { display: none; }  /* drop the desktop underline animation */
 }
 @media (max-width: 540px) {
   /* Stack the header into two rows: brand on top, actions below — keeps
@@ -1284,4 +1337,74 @@ p { margin: 0 0 1em; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   .hero-image { transform: none; }
   html { scroll-behavior: auto; }
+}
+
+/* ───── Standalone review page (/reseñas/ — QR target) ───── */
+.review-page {
+  min-height: 100dvh;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(62, 102, 80, .18), transparent 60%),
+    var(--beige);
+  display: flex;
+  flex-direction: column;
+}
+.rp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(var(--max-narrow), 100%);
+  margin: 0 auto;
+  padding: 18px var(--pad);
+}
+.rp-main {
+  flex: 1;
+  width: min(560px, 100%);
+  margin: 0 auto;
+  padding: 8px var(--pad) 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.rp-card {
+  width: 100%;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: clamp(22px, 5vw, 40px);
+}
+.rp-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  line-height: 1.15;
+  margin: 4px 0 6px;
+  color: var(--forest-deep);
+}
+.rp-actions { justify-content: stretch; margin-top: 6px; }
+.rp-actions .btn { width: 100%; }
+.rp-back {
+  display: inline-block;
+  margin-top: 22px;
+  color: var(--forest);
+  font-weight: 500;
+  font-size: .95rem;
+}
+.rp-back:hover { color: var(--forest-deep); }
+
+/* Success state */
+.rp-success { text-align: center; padding: 18px 0 6px; }
+.rp-success-mark {
+  width: 64px; height: 64px; margin: 0 auto 16px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--forest);
+  color: var(--cream);
+  font-size: 1.9rem; font-weight: 700;
+}
+.rp-success-text {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--forest-deep);
 }

@@ -109,13 +109,17 @@
       <span class="brand-mark">🌲</span>
       <span class="brand-name">Mirador Los Pinos</span>
     </a>
-    <nav class="primary-nav" aria-label="Primary">
-      <a href="#about" data-i18n="nav.cabins">Cabañas</a>
-      <a href="#nearby" data-i18n="nav.nearby">Qué hacer</a>
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+      <a href="#about" data-i18n="nav.place">Lugar</a>
+      <a href="#amenities" data-i18n="nav.amenities">Amenidades</a>
+      <a href="#gallery" data-i18n="nav.gallery">Fotos</a>
       <a href="#reviews" data-i18n="nav.reviews">Reseñas</a>
       <a href="#location" data-i18n="nav.location">Ubicación</a>
     </nav>
     <div class="header-actions">
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="primary-nav" data-i18n-attr="aria-label" data-i18n="nav.menu" aria-label="Menú">
+        <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
       <button class="lang-toggle" id="lang-toggle" aria-label="Cambiar idioma">
         <span data-lang-active>ES</span><span class="sep">·</span><span data-lang-inactive>EN</span>
       </button>
@@ -148,7 +152,7 @@
     <p data-i18n="about.body2"></p>
   </div>
 
-  <div class="container">
+  <div class="container" id="amenities">
     <ul class="features">
       <li class="feature">
         <span class="feature-icon" aria-hidden="true">

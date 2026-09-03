@@ -5,3 +5,5 @@ worker/.dev.vars
 
 # Local-only credentials — never commit
 .credentials
+git_secret.txt
+*_secret.txt

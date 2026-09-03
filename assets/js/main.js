@@ -22,6 +22,7 @@ const state = {
 
   applyTranslations();
   setupLangToggle();
+  setupNav();
   setupGallery();
   setupLightbox();
   setupModal();
@@ -112,6 +113,38 @@ function setupLangToggle() {
       state.lang = state.lang === 'es' ? 'en' : 'es';
       applyTranslations();
     }
+  });
+}
+
+// ── Mobile nav (hamburger) ──────────────────────────────────────────────────
+function setupNav() {
+  const toggle = document.getElementById('nav-toggle');
+  const nav = document.getElementById('primary-nav');
+  if (!toggle || !nav) return;
+
+  const close = () => {
+    nav.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  };
+  const open = () => {
+    nav.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+  };
+
+  toggle.addEventListener('click', e => {
+    e.stopPropagation();
+    nav.classList.contains('open') ? close() : open();
+  });
+
+  // Tapping a section link closes the menu.
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+
+  // Click outside or Escape closes it.
+  document.addEventListener('click', e => {
+    if (nav.classList.contains('open') && !nav.contains(e.target) && e.target !== toggle) close();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && nav.classList.contains('open')) close();
   });
 }
 

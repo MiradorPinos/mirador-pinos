@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="review.page_title">Escribe tu reseña · Mirador Los Pinos</title>
+  <!-- Thin single-purpose landing (QR target) — keep it out of the index. -->
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#2d4a3a" />
+  <link rel="canonical" href="https://miradorpinos.com/reviews/" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body class="review-page">
+
+<!-- ───── Minimal header ───── -->
+<header class="rp-header">
+  <a href="/" class="brand">
+    <span class="brand-mark">🌲</span>
+    <span class="brand-name">Mirador Los Pinos</span>
+  </a>
+  <button class="lang-toggle" id="lang-toggle" aria-label="Cambiar idioma">
+    <span data-lang-active>ES</span><span class="sep">·</span><span data-lang-inactive>EN</span>
+  </button>
+</header>
+
+<!-- ───── Review card ───── -->
+<main class="rp-main">
+  <div class="rp-card">
+    <p class="eyebrow" data-i18n="reviews.eyebrow">Reseñas</p>
+    <h1 class="rp-title" data-i18n="form.title">Comparte tu experiencia</h1>
+    <p class="muted" data-i18n="form.subtitle">Tu reseña aparecerá tras una breve revisión.</p>
+
+    <form id="review-form" novalidate>
+      <label class="field">
+        <span data-i18n="form.name">Tu nombre</span>
+        <input name="author" type="text" required maxlength="80" data-i18n-attr="placeholder" data-i18n="form.name_placeholder" />
+      </label>
+
+      <fieldset class="field">
+        <legend data-i18n="form.rating">Calificación</legend>
+        <div class="rating-input" role="radiogroup">
+          <input type="radio" name="rating" value="5" id="rating-5" required checked>
+          <label for="rating-5" aria-label="5 / 5">★</label>
+          <input type="radio" name="rating" value="4" id="rating-4">
+          <label for="rating-4" aria-label="4 / 5">★</label>
+          <input type="radio" name="rating" value="3" id="rating-3">
+          <label for="rating-3" aria-label="3 / 5">★</label>
+          <input type="radio" name="rating" value="2" id="rating-2">
+          <label for="rating-2" aria-label="2 / 5">★</label>
+          <input type="radio" name="rating" value="1" id="rating-1">
+          <label for="rating-1" aria-label="1 / 5">★</label>
+        </div>
+      </fieldset>
+
+      <label class="field">
+        <span data-i18n="form.headline">Título</span>
+        <input name="title" type="text" maxlength="120" data-i18n-attr="placeholder" data-i18n="form.headline_placeholder" />
+      </label>
+
+      <label class="field">
+        <span class="field-label-row">
+          <span data-i18n="form.body">Tu reseña</span>
+          <span class="char-counter" id="body-counter" aria-live="polite">0 / 711</span>
+        </span>
+        <textarea name="body" rows="5" maxlength="711" data-i18n-attr="placeholder" data-i18n="form.body_placeholder" id="review-body"></textarea>
+      </label>
+
+      <!-- honeypot -->
+      <label class="hp-field" aria-hidden="true">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" />
+      </label>
+
+      <p class="form-status" id="form-status" role="status"></p>
+
+      <div class="form-actions rp-actions">
+        <button type="submit" class="btn btn-primary btn-lg" id="submit-btn" data-i18n="form.submit">Enviar reseña</button>
+      </div>
+    </form>
+
+    <!-- success state (shown after submit) -->
+    <div class="rp-success" id="rp-success" hidden>
+      <div class="rp-success-mark" aria-hidden="true">✓</div>
+      <p class="rp-success-text" data-i18n="form.success">¡Gracias! La revisaremos pronto.</p>
+    </div>
+  </div>
+
+  <a class="rp-back" href="/" data-i18n="review.back">← Volver al sitio</a>
+</main>
+
+<script src="/assets/js/review.js" type="module"></script>
+</body>
+</html>
