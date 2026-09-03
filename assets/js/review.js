@@ -19,12 +19,11 @@ const state = { lang: 'es', i18n: null };
 })();
 
 // ── i18n ────────────────────────────────────────────────────────────────────
-// This page isn't pre-rendered per language, so language is resolved on the
-// client: an explicit ?lang= wins, otherwise the browser preference, else es.
+// Default to Spanish — the site's canonical language — regardless of the
+// visitor's browser/OS locale, so it matches the homepage (/ = es, /en/ = en).
+// English is opt-in only, via ?lang=en (the toggle, or an EN-specific QR).
 function pickInitialLang() {
-  const q = new URLSearchParams(location.search).get('lang');
-  if (q === 'en' || q === 'es') return q;
-  return (navigator.language || '').toLowerCase().startsWith('en') ? 'en' : 'es';
+  return new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'es';
 }
 
 function t(key) {
