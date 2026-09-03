@@ -1,23 +1,6 @@
 {
   "reviews": [
     {
-      "id": "2026-09-03-token-test-please-ignore-close-i13",
-      "author": "TOKEN TEST - please ignore/close",
-      "date": "2026-09-03",
-      "rating": 5,
-      "title": "Automated token check",
-      "body": "Automated test to verify the review pipeline GitHub token. Safe to close/delete this issue.",
-      "lang": "en",
-      "translations": {
-        "es": {
-          "title": "Comprobación automática de tokens",
-          "body": "Prueba automatizada para verificar el token de GitHub del proceso de revisión. Es seguro cerrar/eliminar este problema."
-        }
-      },
-      "source_issue": 13,
-      "_content_hash": "d4b300cbb3c9"
-    },
-    {
       "id": "2026-04-15-vany-i12",
       "author": "VaNy",
       "date": "2026-04-15",
